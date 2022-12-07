@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--
+      theme name: Bangladeshi Software
+      version: 1.0
+      author: @bangladeshisoftware
+     -->
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
+
+  <!-- FONT-AWESOME -->
+  <script src="https://kit.fontawesome.com/6788eb3be6.js" crossorigin="anonymous"></script>
+
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+
+  <title>Blog</title>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="bg-white shadow bg-cover bg-center"
+    style="background-image: linear-gradient(to right, #CEF3F3, #cef3f3c2), url('https://www.bangladeshisoftware.com/wp-content/uploads/2019/06/header-bg-copyright.jpg'); background-repeat: no-repeat; background-size: cover;">
+
+    <!-- Header Links -->
+    <div class="container flex justify-between items-center h-20 relative">
+      <a href="index.php">
+        <img class="w-32 xl:w-40" src="assets/images/logo.png" alt="" />
+      </a>
+
+
+      <!-- Header UL -->
+      <button id="toggle_menu" class="text-lg lg:hidden relative z-50"><i class="fa-solid fa-bars"></i></button>
+      <div class="hidden fixed inset-0 m-auto w-full h-full bg-black z-40 bg-opacity-40" id="mobile_header_overlay">
+      </div>
+      <ul id="menu_ul"
+        class="flex lg:items-center fixed lg:static top-20 inset-x-0 mx-auto lg:mx-0 gap-3 flex-col lg:flex-row lg:bg-transparent bg-white w-[90%] lg:w-auto p-6 lg:p-0 rounded shadow-lg lg:border-transparent lg:shadow-none items-start transform scale-y-0 lg:scale-y-100 origin-top z-50 border transition-transform">
+        <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"
+            href="services.php">Services</a>
+        </li>
+        <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="blogs.php">Blogs</a>
+        </li>
+        <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="team.php">Team</a>
+        </li>
+        <li>
+          <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"
+            href="investor.php">Investor</a>
+        </li>
+
+        <li class="relative header_sub_parent">
+          <a class="header_sub_ul_toggle flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"
+            href="#">Pages</a>
+          <div
+            class="transition-all transform origin-top scale-y-0 py-2 absolute z-50 top-[100%] inset-x-0 mx-auto w-56 space-y-1">
+            <ul class="bg-white p-3 rounded shadow-xl border">
+              <li><a href="about.php"
+                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">About
+                  US</a></li>
+              <li><a href="contact.php"
+                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Contact
+                  US</a></li>
+              <li><a href="refund-policy.php"
+                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Refund
+                  Policy</a></li>
+              <li><a href="privacy-policy.php"
+                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Privacy
+                  Policy</a></li>
+              <li><a href="terms-and-conditions.php"
+                  class="custom_li_hover hover:text-white rounded shadow-sm px-3 py-2 block w-full">Terms
+                  and Conditions</a></li>
+            </ul>
+          </div>
+        </li>
+
+        <li>
+          <a class="flex items-center px-3 h-[44px]" href="signup.php">Signup</a>
+        </li>
+        <li>
+          <a class="flex items-center px-3 h-[44px] text-white space-x-2 rounded focus:ring-1 focus:ring-[#11987d] ring-offset-2 shadow"
+            style="
+                      background-image: conic-gradient(from 1turn, #0e9479, #16a085);
+                    " href="login.php">
+            <span class="text-sm">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+            <span>Login</span>
+          </a>
+        </li>
+
+        <li class="relative">
+          <div class="p-0.5 w-fit h-fit bg-gray-100 rounded-md hover:from-transparent transition-all">
+            <button id="dashboard_options_handler"
+              class="flex items-center gap-x-2 px-3 h-[44px] rounded bg-white hover:bg-gray-100 transition-all focus:ring-2 ring-offset-2 focus:ring-gray-200"
+              href="#">
+
+              <a href="cart.php" class="mr-1 relative flex items-center gap-x-1 text-sm">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart_items_wrapper"> </span>
+              </a>
+              <small>Shamim Reza</small>
+              <img class="w-7 h-7 rounded-full" src="https://i.ibb.co/Ryr9PQB/index.jpg" alt="" />
+              <small class="block transition-all transform rotate-180">
+                <i class="fa-solid fa-chevron-up"></i>
+              </small>
+            </button>
+          </div>
+
+          <div id="dashboard_options"
+            class="absolute w-full rounded h-fit bg-white shadow top-[105%] inset-x-0 mx-auto transition-all transform origin-top scale-y-0 z-50">
+            <div class="flex flex-col py-2">
+              <a href="dashboard.php" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
+                <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-gauge"></i></span>
+                <span>Dashboard</span>
+              </a>
+
+              <a href="##" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
+                <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-sign-out"></i></span>
+                <span>Logout</span>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+    </div>
+
+    <!-- Sub Header -->
+    <div class="container2 space-y-6 pt-6 pb-12 lg:py-24">
+
+      <!-- Page name Title -->
+      <h3 class="text-4xl font-medium tracking-wide">
+        Blog Title Lorem, ipsum dolor.
+      </h3>
+
+      <!-- Page Tree Links -->
+      <div class="items-center justify-start space-x-2 text-gray-500">
+
+        <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
+          class="text-white px-4 py-1.5 rounded shadow-sm" href="index.php">
+          <i class="fa-solid fa-house"></i>
+        </a>
+
+        <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
+
+        <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
+          class="text-white px-4 py-1.5 rounded shadow-sm" href="blog.php"> Lorem ipsum dolor sit.
+        </a>
+
+      </div>
+
+    </div>
+  </header>
+
+  <main class="min-h-screen bg-white py-6">
+    <div class="flex items-start">
+      <div class="container2 flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 gap-x-12">
+        Dynamic Content Here...
+      </div>
+    </div>
+  </main>
+  <!-- Header area -->
+  <?php include("common/footer.php");?>
+<!-- Header area -->
