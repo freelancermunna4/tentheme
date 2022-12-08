@@ -31,8 +31,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
-  <!--=== FONT-AWESOME  ===-->
+  <!--=== Font awesome  ===-->
   <script src="https://kit.fontawesome.com/6788eb3be6.js" crossorigin="anonymous"></script>
+
+  <!-- SUMMERNOTE TEXTAREA -->
+  <script src="https://code.jquery.com/jquery-3.2.1.js" crossorigin="anonymous"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js" crossorigin="anonymous"></script>    
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet" />
+
 
   <!--=== Styles ===-->
   <link rel="stylesheet" href="css/styles.css">
