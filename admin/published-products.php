@@ -26,7 +26,7 @@
                           <option value="DESC">High To Low</option>
                       </select>
 
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pending-products.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="published-products.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
 
                       <script type="text/javascript">
                           $(function () {
@@ -70,7 +70,7 @@
                         $delete = _delete("products","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:pending-products.php?msg=$msg");
+                      header("location:published-products.php?msg=$msg");
                     }
                   }
                   ?>
@@ -98,13 +98,13 @@
                     <?php 
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $products = _get("products","status='Pending' AND (title='$src' OR regular_price='$src' OR sell_price='$src' OR category='$src')");                       
+                      $products = _get("products","status='publish' AND (title='$src' OR regular_price='$src' OR sell_price='$src' OR category='$src')");                       
 
                     }elseif(isset($_GET['sort'])){
                       if($_GET['sort']== 'ASC'){
-                        $products =_get("products","status='Pending' ORDER BY sell_price ASC");
+                        $products =_get("products","status='publish' ORDER BY sell_price ASC");
                       }else{
-                        $products =_get("products","status='Pending' ORDER BY sell_price DESC");
+                        $products =_get("products","status='publish' ORDER BY sell_price DESC");
                       }
                     }else{
                     
@@ -117,8 +117,8 @@
                     $next_page = $page_no + 1;
                     $adjacents = "2"; 
 
-                    $products =_get("products","status='Pending' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("products","status='Pending'")); 
+                    $products =_get("products","status='publish' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("products","status='publish'")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
@@ -141,9 +141,9 @@
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="edit.php?src=pending-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=pending-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                          <a href="delete.php?src=pending-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
+                          <a href="edit.php?src=published-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
+                          <a href="delete.php?src=published-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                          <a href="delete.php?src=published-products&&page=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
                         </td>
                       </tr>
                       <?php }?>

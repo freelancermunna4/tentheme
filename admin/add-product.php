@@ -112,7 +112,7 @@ if(isset($_POST['submit'])){
           <div style="padding-top:33px">
             <label for="status">Status</label>
             <select name="status" class="input">
-              <option value="Draft">Draft</option>
+              <option value="Pending">Pending</option>
               <option value="Publish">Publish</option>
             </select>
           </div>

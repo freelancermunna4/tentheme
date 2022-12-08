@@ -31,13 +31,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
+    <script src="https://code.jquery.com/jquery-3.2.1.js" crossorigin="anonymous"></script> 
   <!--=== Font awesome  ===-->
   <script src="https://kit.fontawesome.com/6788eb3be6.js" crossorigin="anonymous"></script>
-
+  
   <!-- SUMMERNOTE TEXTAREA -->
-  <script src="https://code.jquery.com/jquery-3.2.1.js" crossorigin="anonymous"></script> 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js" crossorigin="anonymous"></script>    
   <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet" />
+
+
+  <!-- Sweet Alert-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 
   <!--=== Styles ===-->
@@ -78,33 +82,16 @@
               <span>Dashboard</span>
             </a>
           </li>
-        </ul>
-      </div>
-      <hr class="my-0">
-
-      <!-- Sidebar Item -> Bank -->
-      <div class="sidebar_item overflow-hidden">
-        <button class="ds_title" data-ref="BANK"><span class="text-xs transition-all text-orange-500"><i
-              class="fa-solid fa-building-columns"></i></span><span class="tracking-wider block">BANK</span><span
-            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
-        </button>
-        <ul class="ds_ul transition-all" data-ref="BANK">
           <li>
-            <a href="./deposit-requests.php">
-              <h4> <i class="fa-solid fa-money-bill"></i> </h4>
-              <span>Deposit Requests</span>
-            </a>
-          </li>
-          <li>
-            <a href="./withdrawl-requests.php">
-              <h4> <i class="fa-solid fa-money-bill-transfer"></i> </h4>
-              <span>Withdrawl Requests</span>
+            <a  href="./category.php">
+              <h4> <i class="fa-solid fa-gauge"></i> </h4>
+              <span>Category</span>
             </a>
           </li>
         </ul>
       </div>
       <hr class="my-0">
-
+      
       <!-- Sidebar Item -> Users -->
       <div class="sidebar_item overflow-hidden">
         <button class="ds_title" data-ref="USERS"><span class="text-xs transition-all text-cyan-600"><i
@@ -162,7 +149,7 @@
             </a>
           </li>
           <li>
-            <a href="./pulished-products.php">
+            <a href="./published-products.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Published Products</span>
             </a>
@@ -191,7 +178,7 @@
             </a>
           </li>
           <li>
-            <a href="./pulished-service.php">
+            <a href="./published-service.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Published Service</span>
             </a>

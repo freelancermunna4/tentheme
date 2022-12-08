@@ -36,20 +36,19 @@
 
                     <div>
                       <?php 
-                      if(isset($_POST['category'])){
+                      if(isset($_POST['submit'])){
                         $category = $_POST['category'];
-                        $time = time();
-                        $insert = _insert("category","time","'$category','$time'");
+                        $insert = _insert("category","category","'$category'");
                         if($insert){
                           $msg = "Successfully Insert Category";
                           header("location:category.php?msg=$msg");
                         }
                       }
                       ?>
-                      <form action="" method="GET">
+                      <form action="" method="POST">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
                             <input name="category" type="text" id="srcvalue" placeholder="Add Category" style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
-                            <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new category</button>
+                            <button type="submit" name="submit" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new category</button>
                         </div>
                     </form>
                     </div>
@@ -58,28 +57,39 @@
 
 
                     <!-- Table -->
+                    <?php 
+                  if(isset($_POST['check'])){
+                    if(isset($_POST['check_list'])){
+                      $check_list = $_POST['check_list'];
+                      for($i=0;$i<count($check_list);$i++){
+                        $delete = _delete("category","id=$check_list[$i]");
+                      }
+                      $msg = "Delete Successfully";
+                      header("location:category.php?msg=$msg");
+                    }
+                  }
+                  ?>
+                  <form action="" method="POST">
+                    <!-- Table -->
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
                   <thead class="bg-white">
                     <tr>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Tumbnail</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Link</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Regular Price</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Sell Price</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Category</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Date</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Autor</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
+                        <input name="check" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
+                      </th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Sl.</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Category Name</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
 
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php if(isset($_GET['sort'])){
+                    <?php 
+                    if(isset($_GET['sort'])){
                       if($_GET['sort']== 'ASC'){
-                        $products =_get("products","status='Pending' ORDER BY sell_price ASC");
+                        $category =_query("SELECT * FROM category ORDER BY category ASC");
                       }else{
-                        $products =_get("products","status='Pending' ORDER BY sell_price DESC");
+                        $category =_query("SELECT * FROM category ORDER BY category DESC");
                       }
                     }else{
                     
@@ -92,37 +102,30 @@
                     $next_page = $page_no + 1;
                     $adjacents = "2"; 
 
-                    $products =_get("products","status='Pending' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("products","status='Pending'")); 
+                    $category =_query("SELECT * FROM category ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_getAll("category")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
                     }
-
-                    while($data = mysqli_fetch_assoc($products)){
-                    $person_id = $data['pid'];
-                    $person_info = _fetch("person","id=$person_id");
+                    $i=0;
+                    while($data = mysqli_fetch_assoc($category)){ $i++
                     ?>
-                    <tr class="hover:bg-gray-100">
-                      <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/image.png"></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['link']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['regular_price']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['sell_price']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
-                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
-                      <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                        <a href="edite.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                        <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                        <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
-                      </td>
-                    </tr>
-                    <?php }?>
-
-                  </tbody>
-                </table>
+                      <tr class="hover:bg-gray-100">
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
+                          <input name="check_list[]" type="checkbox" value="<?php echo $data['id']?>">
+                        </td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $i;?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
+                        <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
+                          <a href="delete.php?src=pending-products&&table=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                        </td>
+                      </tr>
+                      <?php }?>
+                      
+                    </tbody>
+                  </table>
+                </form>
 
                 <?php if(isset($pagination)){?>
                 <div style="padding:20px 10px;">
