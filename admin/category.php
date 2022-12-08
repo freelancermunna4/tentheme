@@ -1,4 +1,5 @@
 <?php include("common/header-sidebar.php");?>
+
 <div class="x_container space-y-10 py-10">
     <div class="flex flex-col rounded-lg shadow-md border border-[
         ] shadow-gray-200 bg-white">
@@ -7,17 +8,8 @@
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
-                      <select style="margin: 15px;width:300px;" name="" class="input" id="category">
-                          <?php if(isset($_GET['src'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['src']?>"><?php echo $_GET['src']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Category</option>
-                          <?php }?>
-                          <option value="Javascript">Javascript</option>
-                          <option value="PHP">PHP</option>
-                      </select>
 
-                      <select style="margin: 15px;" name="" class="input" id="sort">
+                      <select style="margin: 15px;width:300px;" name="sort" class="input" id="sort">
                           <?php if(isset($_GET['sort'])){?>
                           <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
                           <?php }else{?>
@@ -27,8 +19,7 @@
                           <option value="DESC">DESC</option>
                       </select>
 
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pending-products.php">Refresh <i class="fa-solid fa-rotate-right"></i></a>
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="pending-products.php">Delete</a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="category.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
 
                       <script type="text/javascript">
                           $(function () {
@@ -40,23 +31,25 @@
                                   }
                               });
                           });
-                          $(function () {
-                              $('#category').on('change', function () {
-                                  var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?src=' +val;
-                                  if (url != "") {
-                                      window.location.href = url;
-                                  }
-                              });
-                          });
                       </script>
                     </div>
 
                     <div>
+                      <?php 
+                      if(isset($_POST['category'])){
+                        $category = $_POST['category'];
+                        $time = time();
+                        $insert = _insert("category","time","'$category','$time'");
+                        if($insert){
+                          $msg = "Successfully Insert Category";
+                          header("location:category.php?msg=$msg");
+                        }
+                      }
+                      ?>
                       <form action="" method="GET">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
-                            <input name="src" type="search" id="srcvalue" placeholder="Search Here..." style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
-                            <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
+                            <input name="category" type="text" id="srcvalue" placeholder="Add Category" style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
+                            <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new category</button>
                         </div>
                     </form>
                     </div>
@@ -68,7 +61,6 @@
                     <table class="min-w-full divide-y divide-gray-200 table-fixed">
                   <thead class="bg-white">
                     <tr>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Select</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Tumbnail</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Link</th>
@@ -83,12 +75,7 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php 
-                    if(isset($_GET['src'])){
-                      $src = trim($_GET['src']);
-                      $products = _get("products","status='Pending' AND (title='$src' OR  link='$src' OR regular_price='$src' OR sell_price='$src' OR category='$src')");                       
-
-                    }elseif(isset($_GET['sort'])){
+                    <?php if(isset($_GET['sort'])){
                       if($_GET['sort']== 'ASC'){
                         $products =_get("products","status='Pending' ORDER BY sell_price ASC");
                       }else{
@@ -116,27 +103,22 @@
                     $person_id = $data['pid'];
                     $person_info = _fetch("person","id=$person_id");
                     ?>
-                    <form action="">
-                      <tr class="hover:bg-gray-100">
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
-                          <input type="checkbox" >
-                        </td>
-                        <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/image.png"></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['link']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['regular_price']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['sell_price']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
-                        <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="edite.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                          <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
-                        </td>
-                      </tr>
-                    </form>
+                    <tr class="hover:bg-gray-100">
+                      <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/image.png"></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['link']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['regular_price']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['sell_price']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
+                      <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
+                      <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
+                        <a href="edite.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
+                        <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                        <a href="delete.php?src=pending-products&&table=products&&id=1" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
+                      </td>
+                    </tr>
                     <?php }?>
 
                   </tbody>
@@ -303,53 +285,6 @@
 </div>
 
 <script src="js/app.js"></script>
-<script>
-id = 0;
-
-function reqid(data) {
-    id = data;
-    console.log(id);
-}
-
-$('#apv').click(() => {
-    $('#apv').hide();
-    $.ajax({
-        type: "POST",
-        url: "common/ajax",
-        data: 'apv=' + id,
-        success: function(z) {
-            if (z.trim() == "success") {
-                swal("Success!", "Successfully Aprove", "success");
-                location.reload(true);
-            } else {
-                swal(z);
-                $('#apv').show();
-            }
-
-        }
-    })
-})
-
-$('#rej').click(() => {
-    $('#rej').hide();
-    $.ajax({
-        type: "POST",
-        url: "common/ajax",
-        data: 'rej=' + id,
-        success: function(z) {
-            if (z.trim() == "success") {
-                swal("Success!", "Successfully Rejected", "success");
-                location.reload(true);
-            } else {
-                swal(z);
-                $('#rej').show();
-            }
-
-        }
-    })
-})
-</script>
-
 
 </body>
 
