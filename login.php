@@ -1,7 +1,7 @@
 <?php include("admin/config/functions.php");
 _login("index","user");
 
-
+$err = "";
 if(isset($_GET['email'])){
     $email = $_GET['email'];
     $pass = $_GET['pass'];
@@ -13,7 +13,7 @@ if(isset($_GET['email'])){
     setcookie('user_id', $id , time()+86000);
     header('location:dashboard.php?msg=Successfully_Logged_In');
     }else{
-      $msg = "You have no account! Please Sign Up.";
+      $err = "Email Or Password is wrong";
   } 
 }
 
@@ -23,26 +23,21 @@ if(isset($_GET['email'])){
 if(isset($_POST['submit'])){
   $email =$_POST['email'];
   $pass = md5($_POST['pass']);
-          $row = _fetch("person","email='$email' AND password='$pass'");
-          if($row>0){
-              $id = $row['id'];
-              $_SESSION['user_id'] = $id;
-              setcookie('user_id', $id , time()+86000);
-              header('location:dashboard.php?msg=Successfully_Logged_In');
-          }else{
-              $msg = "You have no account! Please Sign Up.";
-          } 
+    $row = _fetch("person","email='$email' AND password='$pass'");
+    if($row>0){
+        $id = $row['id'];
+        $_SESSION['user_id'] = $id;
+        setcookie('user_id', $id , time()+86000);
+        header('location:dashboard.php?msg=Successfully_Logged_In');
+    }else{
+        $err = "Email Or Password is wrong";
+    } 
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <!--
-      theme name: Bangladeshi Software
-      version: 1.0
-      author: @bangladeshisoftware
-     -->
 
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

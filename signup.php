@@ -1,7 +1,7 @@
 <!-- Header area -->
   <?php include("admin/config/functions.php");?>
   <?php _login("index","user");
-  
+  $err = '';
   if(isset($_POST['submit'])){
     $name = $_POST['name'];
     $phone = $_POST['phone'];
@@ -12,8 +12,7 @@
     if (filter_var($email, FILTER_VALIDATE_EMAIL)){
       $check = _fetch("person","email='$email'");
     if($check>0){
-        $msg = "Alrady Have Account. Please Login";
-        header("location:signup.php?msg=$msg");
+        $err = "Alrady Have Account. Please Login";
       }else{
       if($pass==$cpass){
         $insert = _insert("person","name, phone, email, password, time","'$name','$phone', '$email', '$pass', '$time'");
@@ -28,8 +27,7 @@
           header("location:signup.php?msg=$msg");
         }
       }else{
-        $msg = "Password and Confirm Password are not match!";
-        header("location:signup.php?msg=$msg");
+        $err = "Password and Confirm Password are not match!";
       }
     }
   }
@@ -39,11 +37,6 @@
 <html lang="en">
 
 <head>
-  <!--
-      theme name: Bangladeshi Software
-      version: 1.0
-      author: @bangladeshisoftware
-     -->
 
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />

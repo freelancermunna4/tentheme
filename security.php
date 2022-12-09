@@ -43,8 +43,31 @@
           <div class="px-5 py-4 text-blue-600 border-b flex justify-between items-center">
             <span class="text-2xl font-medium tracking-wide">Change Password</span>
           </div>
+          <?php
+          $err = "";
+            if(isset($_POST['submit'])){
+              $password = md5($_POST['password']);
+              $new_password = md5($_POST['new_password']);
+              $confirm_password = md5($_POST['confirm_password']);
+              $person_id = $person['id'];
 
-          <form class="grid grid-cols-12 gap-y-6 p-5">
+              if($new_password == $confirm_password){
+                  if($person['password'] == $password){
+                  $update = _update("person","password='$new_password'","id=$person_id");
+                  if($update){
+                    $msg = "Password Change Successfully";
+                    header("location:security.php?msg=$msg");
+                  }
+                }else{
+                  $err = "Your Old Password are not Currect";
+                }
+              }else{
+                $err = "Password and Confirm Password are not Match";
+              }
+            }
+
+          ?>
+          <form action="" method="POST" class="grid grid-cols-12 gap-y-6 p-5">
             <div class="col-span-12"><label class="mb-2 block" for="new_password">Current Password</label><input
                 required="" name="password" type="password" placeholder="Password"
                 class="w-full h-11 flex items-center rounded bg-white outline-none ring-2 ring-gray-200 disabled:bg-gray-200 disabled:cursor-not-allowed focus:ring-blue-600 text-gray-800 px-4"
@@ -58,7 +81,7 @@
                 class="w-full h-11 flex items-center rounded bg-white outline-none ring-2 ring-gray-200 disabled:bg-gray-200 disabled:cursor-not-allowed focus:ring-blue-600 text-gray-800 px-4"
                 value=""></div>
             <div class="col-span-12">
-              <div class="w-fit"><button type="submit"
+              <div class="w-fit"><button type="submit" name="submit"
                   class="flex items-center justify-center px-4 gap-x-4 bg-blue-600 text-white focus:ring rounded w-full h-11 tracking-wider font-medium text-base"><svg
                     aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock"
                     class="svg-inline--fa fa-lock " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
