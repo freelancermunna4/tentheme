@@ -3,7 +3,7 @@
 <!-- Header area -->
 
     <!-- Sub Header -->
-    <div class="container2 space-y-6 pt-12">
+    <div class="container space-y-6 pt-12">
       <!-- Page name Title -->
       <h3 class="text-4xl font-medium tracking-wide">
         Lorem ipsum dolor sit amet.
@@ -82,7 +82,7 @@
 
   <main class="min-h-screen bg-gray-50 ">
     <div class="flex items-start">
-      <div class="container2 flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 gap-x-12 relative">
+      <div class="container flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 gap-x-12 relative">
 
         <!-- Theme Content -->
         <div class="w-full pt-12">

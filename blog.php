@@ -141,7 +141,7 @@
     </div>
 
     <!-- Sub Header -->
-    <div class="container2 space-y-6 pt-6 pb-12 lg:py-24">
+    <div class="container space-y-6 pt-6 pb-12 lg:py-24">
 
       <!-- Page name Title -->
       <h3 class="text-4xl font-medium tracking-wide">
@@ -169,7 +169,7 @@
 
   <main class="min-h-screen bg-white py-6">
     <div class="flex items-start">
-      <div class="container2 flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 gap-x-12">
+      <div class="container flex flex-col lg:flex-row gap-y-6 lg:gap-y-0 gap-x-12">
         Dynamic Content Here...
       </div>
     </div>

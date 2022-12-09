@@ -135,7 +135,7 @@
     </div>
 
     <!-- Sub Header -->
-    <div class="container2 space-y-6 py-24">
+    <div class="container space-y-6 py-24">
 
       <!-- Item Title -->
       <h3 class="text-4xl font-medium tracking-wide">Shooping Cart</h3>

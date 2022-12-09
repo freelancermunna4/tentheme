@@ -24,7 +24,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>productLESSBD ADMIN Panel</title>
+  <title>Admin Panel</title>
   <!--=== Google Font  ===-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,9 +61,8 @@
         <a class="flex items-center justify-between gap-x-2 active" href="./">
           <p class="text-blue-600"> <i class="fa-solid fa-crown"></i> </p>
           <p class="flex items-center justify-center"><span
-              class="font-semibold text-lg text-blue-500">productLESS</span><span
-              class="font-semibold text-lg text-purple-600">BD</span><span
-              class="font-bold text-lg text-purple-700">ADMIN</span></p>
+              class="font-semibold text-lg text-blue-500">Banladeshi</span><span
+              class="font-semibold text-lg text-purple-600">Software</span></p>
         </a>
         <button id="hide_sidebar" class="lg:hidden text-gray-800"> <i class="fa-solid fa-xmark"></i> </button>
       </div>
@@ -468,7 +467,7 @@
             <div class="relative w-fit z-50"><button type="button"
                 class="header_options_toggler w-full p-2 rounded bg-gray-100 shadow border flex items-center justify-center gap-x-3">
 
-                <a class="pr-1" target="_blank" href="https://productlessbd.com/">
+                <a class="pr-1" target="_blank" href="../index.php">
                   <span class="text-sm font-medium"><i class="fa fa-eye"></i></span></a>
                 <span>
                   Bangladeshi Software </span><img class="h-7 w-7 rounded-full"
@@ -477,15 +476,16 @@
                     class="fa-solid fa-chevron-right"></i></small>
               </button>
               <div
-                class="header_options absolute w-full bg-white rounded shadow top-full right-0 transition-all origin-top transform scale-y-0">
-                <a href="logout.php" class="flex items-center gap-x-2 w-full  hover:bg-gray-100 p-3">
-                  <i class="fa-solid fa-arrow-right-from-bracket"></i><span
-                    class="text-sm font-medium">Logout</span></a>
+                class="header_options absolute w-full bg-white rounded shadow top-full right-0 transition-all origin-top transform scale-y-0">               
 
-                <a target="_blank" href="https://productlessbd.com/"
+                <a target="_blank" href="../index.php"
                   class="flex items-center gap-x-2 w-full  hover:bg-gray-100 p-3"> <i
                     class="fa fa-internet-explorer"></i>
                   <span class="text-sm font-medium">View Website</span></a>
+
+                  <a href="logout.php" class="flex items-center gap-x-2 w-full  hover:bg-gray-100 p-3">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i><span
+                    class="text-sm font-medium">Logout</span></a>
 
               </div>
             </div>

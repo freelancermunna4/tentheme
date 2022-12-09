@@ -5,7 +5,7 @@ _login("index");
 if(isset($_POST['submit'])){
   $email =$_POST['email'];
   $pass = md5($_POST['pass']);
-          $row = _fetch("person","email='$email' AND role='Admin'");
+          $row = _fetch("person","email='$email' AND password='$pass' AND role='Admin'");
           if($row>0){
               $id = $row['id'];
               $_SESSION['person_id'] = $id;

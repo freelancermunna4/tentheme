@@ -100,6 +100,8 @@
             header("location:$logout.php");
     }
 
+    $time = time();
+
 
 
     require('plugins.php');

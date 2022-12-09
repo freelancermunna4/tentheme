@@ -141,7 +141,7 @@
     </div>
 
     <!-- Sub Header -->
-    <div class="container2 space-y-6 pt-6 pb-12 lg:py-24">
+    <div class="container space-y-6 pt-6 pb-12 lg:py-24">
 
       <!-- Page name Title -->
       <h3 class="text-4xl font-medium tracking-wide">

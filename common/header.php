@@ -1,3 +1,22 @@
+<?php include("admin/config/functions.php");
+
+    if(isset($_SESSION['person_id'])){
+      $id = $_SESSION['person_id'];
+    }elseif(isset($_COOKIE['person_id'])){
+    $id = $_COOKIE['person_id'];
+    }else{
+    $id = 0;
+    }
+    if(isset($_SESSION['person_id'])){
+    $id = $_SESSION['person_id'];
+    }
+    if($id<1){
+    header("location:login.php");
+    }
+
+    $person = _fetch("person","$id");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,6 +105,8 @@
           </div>
         </li>
 
+      <?php 
+      if($id<1){?>  
         <li>
           <a class="flex items-center px-3 h-[44px]" href="signup.php">Signup</a>
         </li>
@@ -100,7 +121,7 @@
             <span>Login</span>
           </a>
         </li>
-
+        <?php }else{?>
         <li class="relative">
           <div class="p-0.5 w-fit h-fit bg-gray-100 rounded-md hover:from-transparent transition-all">
             <button id="dashboard_options_handler"
@@ -122,17 +143,27 @@
           <div id="dashboard_options"
             class="absolute w-full rounded h-fit bg-white shadow top-[105%] inset-x-0 mx-auto transition-all transform origin-top scale-y-0 z-50">
             <div class="flex flex-col py-2">
+              
+            <?php if($person['role']=='Admin'){?>
+              <a target="_blank" href="admin/index.php" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
+                <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-chart-line"></i></span>
+                <span>Admin Panel</span>
+              </a>
+              <?php }?>
+              
               <a href="dashboard.php" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
                 <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-gauge"></i></span>
                 <span>Dashboard</span>
               </a>
 
-              <a href="##" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
+              <a href="logout.php" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
                 <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-sign-out"></i></span>
                 <span>Logout</span>
               </a>
             </div>
           </div>
         </li>
+        <?php }?>
+
       </ul>
     </div>
