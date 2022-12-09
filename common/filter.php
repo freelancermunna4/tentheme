@@ -20,28 +20,26 @@
             </div>
 
             <!-- Sorting Buttons -->
-            <div class="items-center justify-center">
-              <button
-                class="hover:bg-gray-900 hover:text-white transition-all px-4 h-8 text-sm font-normal tracking-wide border rounded-l">
-                Best seller
-              </button>
-              <button
-                class="hover:bg-gray-900 hover:text-white transition-all px-4 h-8 text-sm font-normal tracking-wide border">
-                Newest
-              </button>
-              <button
-                class="hover:bg-gray-900 hover:text-white transition-all px-4 h-8 text-sm font-normal tracking-wide border">
-                Best rated
-              </button>
-              <button
-                class="hover:bg-gray-900 hover:text-white transition-all px-4 h-8 text-sm font-normal tracking-wide border ">
-                <span>Price Low</span>
-                <i class="fa-solid fa-arrow-down-short-wide"></i>
-              </button>
-              <button
-                class="hover:bg-gray-900 hover:text-white transition-all px-4 h-8 text-sm font-normal tracking-wide border ">
-                <span>Price High</span>
-                <i class="fa-solid fa-arrow-down-wide-short"></i>
-              </button>
-            </div>
+            <div class="flex items-center  gap-x-4">
+              <ul class="sort">
+                <li class="">Filter
+                  <ul>
+                    <li><a href="index.php?sort=top">Best seller</a></li>
+                    <li><a href="index.php?sort=top">Best rated</a></li>
+                    <li><a href="index.php?sort=top">Newest</a></li>
+                    <li><a href="index.php?sort=top">Price Low</a></li>
+                    <li><a href="index.php?sort=top">Price High</a></li>
+                    <li>Newest</li>
+                    <li>Best rated</li>
+                    <li>Newest</li>
+                    <li>Price Low</li>
+                    <li>Price High</li>
+                </ul>
+                </li>
+              </ul>            
+          </div>
+
+
+
+
           </div>

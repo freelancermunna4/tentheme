@@ -1,5 +1,13 @@
     <div class="w-full lg:min-w-[350px] lg:w-[350px] bg-white p-5 rounded-sm shadow">
           <div class="sidebar_item overflow-hidden">
+            <div class="box">
+              <div class="name"><?php echo $person['name']?></div>
+              <hr>
+              <div class="balance">
+                <img src="admin/upload/<?php echo $person['file_name']?>">
+                <p><b><?php echo $person['balance']?> ৳</b></p>
+              </div>
+            </div>
             <button class="ds_title text-base font-normal w-full flex justify-between pb-1.5" data-ref="my-dashboard">
               <span class="block text-base font-2">GENERAL</span>
               <span class="text-xs opacity-50 transition-all">

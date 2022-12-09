@@ -1,0 +1,39 @@
+.box{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.name{
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+
+}
+.balance{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.balance> img{
+    width: 70px;
+    height: 70px;
+    border-radius: 90px;
+}
+.balance> p{
+    font-size: 30px;
+    margin:auto;
+}
+.sort{
+    position: relative;
+    background: red;
+}
+.sort ul{
+    position: absolute;
+    z-index: 9999999;
+    display: block;
+}
+.sort ul li{
+    padding: 5px 20px;
+    background: #000;
+    color: #fff;
+}
