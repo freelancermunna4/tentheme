@@ -77,56 +77,26 @@
         <ul class="ds_ul transition-all" data-ref="STATISTICS">
           <li>
             <a class="active" href="./index.php">
-              <h4> <i class="fa-solid fa-gauge"></i> </h4>
+              <i class="fa-solid fa-gauge"></i>
               <span>Dashboard</span>
             </a>
           </li>
           <li>
             <a  href="./category.php">
-              <h4> <i class="fa-solid fa-gauge"></i> </h4>
+              <i class="fa-brands fa-squarespace"></i>
               <span>Category</span>
             </a>
           </li>
+          <li>
+            <a  href="./users.php">
+              <i class="fa-solid fa-users"></i>
+              <span>Users</span>
+            </a>
+          </li>
         </ul>
       </div>
-      <hr class="my-0">
+      <hr class="my-0">    
       
-      <!-- Sidebar Item -> Users -->
-      <div class="sidebar_item overflow-hidden">
-        <button class="ds_title" data-ref="USERS"><span class="text-xs transition-all text-cyan-600"><i
-              class="fa-solid fa-users"></i></span><span class="tracking-wider block">USERS</span><span
-            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
-        </button>
-        <ul class="ds_ul transition-all" data-ref="USERS">
-          <li>
-            <a href="./users.php">
-              <h4> <i class="fa-solid fa-users"></i> </h4>
-              <span>All Users</span>
-            </a>
-          </li>
-          <li>
-            <a href="./top-20-users.php">
-              <h4> <i class="fa-solid fa-users"></i> </h4>
-              <span>Top 20 Users</span>
-            </a>
-          </li>
-          <li>
-            <a href="./banned-users.php">
-              <h4> <i class="fa-solid fa-users"></i> </h4>
-              <span>Banned Users</span>
-            </a>
-          </li>
-          <li>
-            <a href="./vip-users.php">
-              <h4> <i class="fa-solid fa-users"></i> </h4>
-              <span>VIP Users</span>
-            </a>
-          </li>
-        </ul>
-
-
-      </div>
-      <hr class="my-0">
 
       <!-- Sidebar Item -> products -->
       <div class="sidebar_item overflow-hidden">

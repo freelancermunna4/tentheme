@@ -4,10 +4,10 @@
 if(isset($_GET['src'])){
   $src = $_GET['src'];
   $id = $_GET['id'];
-  $page = $_GET['page'];
+  $table = $_GET['table'];
 }
 
-  $data = _fetch("$page","id=$id");
+  $data = _fetch("$table","id=$id");
 
 
 $err = "";
@@ -41,7 +41,7 @@ if(isset($_POST['submit'])){
   $file_tmp4 = $_FILES['file4']['tmp_name'];
   move_uploaded_file($file_tmp4,"upload/$file_name4");
 
-    $update = _update("$page","pid='$pid',title='$title',link='$link',regular_price='$regular_price',sell_price='$sell_price',category='$category',mini_content='$mini_content',content='$content',description='$description',status='$status',file_name1='$file_name1',file_name2='$file_name2',file_name3='$file_name3',file_name4='$file_name4'","id=$id");
+    $update = _update("$table","pid='$pid',title='$title',link='$link',regular_price='$regular_price',sell_price='$sell_price',category='$category',mini_content='$mini_content',content='$content',description='$description',status='$status',file_name1='$file_name1',file_name2='$file_name2',file_name3='$file_name3',file_name4='$file_name4'","id=$id");
     if($update){
       $msg = "Successfully Updated";
       header("Location:$src.php?msg=$msg");
@@ -56,7 +56,7 @@ if(isset($_POST['submit'])){
         <form action="" method="POST" enctype="multipart/form-data">
         <div class="grid grid-cols-2 gap-y-8 gap-x-12">
           <div class="col-span-2">
-            <h2 class="text-xl font-semibold text-cyan-800">EDIT <?php echo strtoupper($page) ?></h2>
+            <h2 class="text-xl font-semibold text-cyan-800">EDIT <?php echo strtoupper($table) ?></h2>
           </div>
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
