@@ -20,26 +20,23 @@
             </div>
 
             <!-- Sorting Buttons -->
-            <div class="flex items-center  gap-x-4">
-              <ul class="sort">
-                <li class="">Filter
-                  <ul>
-                    <li><a href="index.php?sort=top">Best seller</a></li>
-                    <li><a href="index.php?sort=top">Best rated</a></li>
-                    <li><a href="index.php?sort=top">Newest</a></li>
-                    <li><a href="index.php?sort=top">Price Low</a></li>
-                    <li><a href="index.php?sort=top">Price High</a></li>
-                    <li>Newest</li>
-                    <li>Best rated</li>
-                    <li>Newest</li>
-                    <li>Price Low</li>
-                    <li>Price High</li>
+            <div class="flex items-center  gap-x-4 sort">
+              <ul>
+                <li id="filter">Filter
+                  <ul id="filter_list">
+                    <li><a href="index.php?sort=best-rated">Best rated</a></li>
+                    <li><a href="index.php?sort=Newest">Newest</a></li>
+                    <li><a href="index.php?sort=Price Low">Price Low</a></li>
+                    <li><a href="index.php?sort=Price High">Price High</a></li>
                 </ul>
                 </li>
               </ul>            
           </div>
-
-
-
-
           </div>
+
+        <script>
+          $("#filter_list").hide();
+          $("#filter").click(function(){
+            $("#filter_list").toggle();
+          });
+        </script>
