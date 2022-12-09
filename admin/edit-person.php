@@ -68,16 +68,10 @@ if(isset($_GET['src'])){
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="role">User Type</label>
             <select class="select" name="role" id="role">
-              <?php if($data['role'] != ''){ ?>
-              <option selected value=<?php echo $data['role']?>""><?php echo $data['role']?></option>
-              <option value="">User</option>
-              <option value="Moderator">Moderator</option>
-              <option value="Admin">Admin</option>   
-              <?php }else{?>
-              <option selected value="">User</option>
+              <option style="display:none;" selected value=<?php echo $data['role']?>""><?php echo $data['role']?></option>
+              <option value="User">User</option>
               <option value="Moderator">Moderator</option>
               <option value="Admin">Admin</option>
-              <?php }?>
             </select>
           </div>
 

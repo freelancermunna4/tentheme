@@ -19,6 +19,16 @@
                           <option value="DESC">DESC</option>
                       </select>
 
+                      <select style="margin: 15px;width:300px;" name="role" class="input" id="role">
+                          <?php if(isset($_GET['role'])){?>
+                          <option style="display:none" selected value="<?php echo $_GET['role']?>"><?php echo $_GET['role']?></option>
+                          <?php }else{?>
+                          <option style="display:none" selected>Select</option>
+                          <?php }?>
+                          <option value="User">User</option>
+                          <option value="Moderator">Moderator</option>
+                      </select>
+
                       <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="users.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
 
                       <script type="text/javascript">
@@ -26,6 +36,16 @@
                               $('#sort').on('change', function () {
                                   var val = $(this).find("option:selected").val();
                                   var url = self.location.href.split('?')[0] + '?sort=' +val;
+                                  if (url != "") {
+                                      window.location.href = url;
+                                  }
+                              });
+                          });
+
+                          $(function () {
+                              $('#role').on('change', function () {
+                                  var val = $(this).find("option:selected").val();
+                                  var url = self.location.href.split('?')[0] + '?role=' +val;
                                   if (url != "") {
                                       window.location.href = url;
                                   }
@@ -72,6 +92,7 @@
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Phone</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Email</th>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Address</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Role</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
 
                     </tr>
@@ -80,14 +101,15 @@
                     <?php
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $person = _get("person","role ='' AND (name='$src' OR phone='$src' OR email='$src' OR address LIKE '%$src%')");                       
-
-                    
+                      $person = _get("person","role !='Admin' AND (name='$src' OR phone='$src' OR email='$src' OR role='$src' OR address LIKE '%$src%')");                    
+                    }elseif(isset($_GET['role'])){
+                      $src = trim($_GET['role']);
+                      $person = _get("person","role !='Admin' AND role='$src'");                    
                     }elseif(isset($_GET['sort'])){
                       if($_GET['sort']== 'ASC'){
-                        $person =_query("SELECT * FROM person WHERE role =''  ORDER BY name ASC");
+                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name ASC");
                       }else{
-                        $person =_query("SELECT * FROM person WHERE role =''  ORDER BY name DESC");
+                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name DESC");
                       }
                     }else{
                     
@@ -100,7 +122,7 @@
                     $next_page = $page_no + 1;
                     $adjacents = "2"; 
 
-                    $person =_query("SELECT * FROM person WHERE role ='' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $person =_query("SELECT * FROM person WHERE role !='Admin' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
                     $total_records = mysqli_num_rows(_getAll("person")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
@@ -118,6 +140,11 @@
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['phone']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['email']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['address']?></td>
+                        <?php if($data['role']=='User'){?>
+                        <td class="p-4 text-sm font-normal text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
+                        <?php }else{?>
+                          <td class="p-4 text-sm font-normal text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
+                        <?php }?>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
                           <a id="add_bank" href="edit-person.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
                           <a href="delete.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>

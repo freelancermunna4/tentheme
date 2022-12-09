@@ -10,10 +10,6 @@
     if(isset($_SESSION['user_id'])){
     $id = $_SESSION['user_id'];
     }
-    if($id<1){
-    // header("location:index.php");
-    }
-
     $person = _fetch("person","id=$id");
 
 ?>
@@ -105,6 +101,20 @@
           </div>
         </li>
 
+        <?php if($id<1){?>
+        <li>
+          <a class="flex items-center px-3 h-[44px]" href="signup.php">Signup</a>
+        </li>
+        <li>
+          <a class="flex items-center px-3 h-[44px] text-white space-x-2 rounded focus:ring-1 focus:ring-[#11987d] ring-offset-2 shadow"
+            style=" background-image: conic-gradient(from 1turn, #0e9479, #16a085);" href="login.php">
+            <span class="text-sm">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+            <span>Login</span>
+          </a>
+        </li>
+      <?php }else{?>
         <li class="relative">
           <div class="p-0.5 w-fit h-fit bg-gray-100 rounded-md hover:from-transparent transition-all">
             <button id="dashboard_options_handler"
@@ -123,6 +133,7 @@
             </button>
           </div>
 
+          
           <div id="dashboard_options"
             class="absolute w-full rounded h-fit bg-white shadow top-[105%] inset-x-0 mx-auto transition-all transform origin-top scale-y-0 z-50">
             <div class="flex flex-col py-2">
@@ -146,6 +157,9 @@
             </div>
           </div>
         </li>
+        <?php }?>
+
+
 
       </ul>
     </div>

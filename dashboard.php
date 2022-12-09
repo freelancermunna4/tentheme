@@ -1,7 +1,11 @@
 <!-- Header area -->
 <?php include("common/header.php");?>
 <!-- Header area -->
-
+<?php 
+if($id<1){
+  header("location:index.php");
+  }
+?>
     <!-- Sub Header -->
     <div class="container space-y-6 pt-6 pb-12 lg:py-24">
 
