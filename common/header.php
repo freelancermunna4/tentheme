@@ -1,20 +1,20 @@
 <?php include("admin/config/functions.php");
 
-    if(isset($_SESSION['person_id'])){
-      $id = $_SESSION['person_id'];
-    }elseif(isset($_COOKIE['person_id'])){
-    $id = $_COOKIE['person_id'];
+    if(isset($_SESSION['user_id'])){
+      $id = $_SESSION['user_id'];
+    }elseif(isset($_COOKIE['user_id'])){
+    $id = $_COOKIE['user_id'];
     }else{
     $id = 0;
     }
-    if(isset($_SESSION['person_id'])){
-    $id = $_SESSION['person_id'];
+    if(isset($_SESSION['user_id'])){
+    $id = $_SESSION['user_id'];
     }
     if($id<1){
-    header("location:login.php");
+    // header("location:index.php");
     }
 
-    $person = _fetch("person","$id");
+    $person = _fetch("person","id=$id");
 
 ?>
 <!DOCTYPE html>
@@ -105,23 +105,6 @@
           </div>
         </li>
 
-      <?php 
-      if($id<1){?>  
-        <li>
-          <a class="flex items-center px-3 h-[44px]" href="signup.php">Signup</a>
-        </li>
-        <li>
-          <a class="flex items-center px-3 h-[44px] text-white space-x-2 rounded focus:ring-1 focus:ring-[#11987d] ring-offset-2 shadow"
-            style="
-                      background-image: conic-gradient(from 1turn, #0e9479, #16a085);
-                    " href="login.php">
-            <span class="text-sm">
-              <i class="fa-solid fa-lock"></i>
-            </span>
-            <span>Login</span>
-          </a>
-        </li>
-        <?php }else{?>
         <li class="relative">
           <div class="p-0.5 w-fit h-fit bg-gray-100 rounded-md hover:from-transparent transition-all">
             <button id="dashboard_options_handler"
@@ -132,8 +115,8 @@
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="cart_items_wrapper"> </span>
               </a>
-              <small>Shamim Reza</small>
-              <img class="w-7 h-7 rounded-full" src="https://i.ibb.co/Ryr9PQB/index.jpg" alt="" />
+              <small><?php echo $person['name']?></small>
+              <img class="w-7 h-7 rounded-full" src="admin/upload/<?php echo $person['file_name']?>"/>
               <small class="block transition-all transform rotate-180">
                 <i class="fa-solid fa-chevron-up"></i>
               </small>
@@ -163,7 +146,6 @@
             </div>
           </div>
         </li>
-        <?php }?>
 
       </ul>
     </div>

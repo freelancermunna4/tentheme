@@ -14,7 +14,7 @@
     header("location:login.php");
     }
 
-    $person = _fetch("person","$id");
+    $person = _fetch("person","id=$id");
 
 ?>
 <!DOCTYPE html>
@@ -469,10 +469,8 @@
 
                 <a class="pr-1" target="_blank" href="../index.php">
                   <span class="text-sm font-medium"><i class="fa fa-eye"></i></span></a>
-                <span>
-                  Bangladeshi Software </span><img class="h-7 w-7 rounded-full"
-                  src="https://firebasestorage.googleapis.com/v0/b/bs-game-topup.appspot.com/o/images%2Fimages.png?alt=media&amp;token=f46fd874-00f4-48fe-a8ac-c43abf380491"
-                  alt=""> <small class="header_options_icon transition-all transform"><i
+                <span><?php echo $person['name']?></span><img class="h-7 w-7 rounded-full"
+                  src="upload/<?php echo $person['file_name']?>"> <small class="header_options_icon transition-all transform"><i
                     class="fa-solid fa-chevron-right"></i></small>
               </button>
               <div

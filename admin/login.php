@@ -1,5 +1,5 @@
 <?php include("config/functions.php");
-_login("index");
+_login("index","person");
 
 //============login========//
 if(isset($_POST['submit'])){

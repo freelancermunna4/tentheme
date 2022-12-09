@@ -1,6 +1,6 @@
 <!-- Header area -->
   <?php include("admin/config/functions.php");?>
-  <?php _login("index");
+  <?php _login("index","user");
   
   if(isset($_POST['submit'])){
     $name = $_POST['name'];
@@ -19,9 +19,9 @@
         $insert = _insert("person","name, phone, email, password, time","'$name','$phone', '$email', '$pass', '$time'");
         $row = _fetch("person","email='$email' AND password='$pass'");
         if($row>0){
-        $person_id = $row['id'];
-        $_SESSION['person_id'] = $person_id;
-        setcookie('person_id', $person_id , time()+2592000);
+        $user_id = $row['id'];
+        $_SESSION['user_id'] = $user_id;
+        setcookie('user_id', $user_id , time()+2592000);
         header('location:dashboard.php?msg=Congratulations for Signup Account');
         }else{
           $msg = "Something is worng!";
@@ -35,7 +35,6 @@
   }
 }
   ?>
-<!-- Header area -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,28 +52,26 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet" />
 
- 
   <!-- FONT-AWESOME -->
   <script src="https://kit.fontawesome.com/6788eb3be6.js" crossorigin="anonymous"></script>
 
   <!-- CSS Styles -->
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <title>Theme | Templates</title>
+  <title>Title</title>
 </head>
 
 <body>
-
   <!-- Header -->
-  <header class="relative" style="background-image: linear-gradient(to right, #CEF3F3, #cef3f3c2), url('https://www.bangladeshisoftware.com/wp-content/uploads/2019/06/header-bg-copyright.jpg'); background-repeat: no-repeat; background-size: cover;">
-    <div class="container flex justify-between items-center h-20 mb-auto relative z-50">
-      <a href="index.php" class="w-fit">
+  <header class="bg-white shadow">
+    <div class="container flex justify-between items-center h-20">
+      <a href="index.php">
         <img class="h-10" src="assets/images/logo.png" alt="" />
       </a>
 
@@ -130,47 +127,13 @@
         <li>
           <a class="flex items-center px-3 h-[44px] text-white space-x-2 rounded focus:ring-1 focus:ring-[#11987d] ring-offset-2 shadow"
             style="
-                      background-image: conic-gradient(from 1turn, #0e9479, #16a085);
-                    " href="login.php">
+                            background-image: conic-gradient(from 1turn, #0e9479, #16a085);
+                          " href="login.php">
             <span class="text-sm">
               <i class="fa-solid fa-lock"></i>
             </span>
             <span>Login</span>
           </a>
-        </li>
-
-        <li class="relative">
-          <div class="p-0.5 w-fit h-fit bg-gray-100 rounded-md hover:from-transparent transition-all">
-            <button id="dashboard_options_handler"
-              class="flex items-center gap-x-2 px-3 h-[44px] rounded bg-white hover:bg-gray-100 transition-all focus:ring-2 ring-offset-2 focus:ring-gray-200"
-              href="#">
-
-              <a href="cart.php" class="mr-1 relative flex items-center gap-x-1 text-sm">
-                <i class="fa-solid fa-cart-shopping"></i>
-                <span class="cart_items_wrapper"> </span>
-              </a>
-              <small>Shamim Reza</small>
-              <img class="w-7 h-7 rounded-full" src="https://i.ibb.co/Ryr9PQB/index.jpg" alt="" />
-              <small class="block transition-all transform rotate-180">
-                <i class="fa-solid fa-chevron-up"></i>
-              </small>
-            </button>
-          </div>
-
-          <div id="dashboard_options"
-            class="absolute w-full rounded h-fit bg-white shadow top-[105%] inset-x-0 mx-auto transition-all transform origin-top scale-y-0 z-50">
-            <div class="flex flex-col py-2">
-              <a href="dashboard.php" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
-                <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-gauge"></i></span>
-                <span>Dashboard</span>
-              </a>
-
-              <a href="##" class="flex items-center gap-x-1 w-full px-3 py-3 hover:bg-gray-100">
-                <span class="block min-w-[20px] max-w-[20px]"><i class="fa-solid fa-sign-out"></i></span>
-                <span>Logout</span>
-              </a>
-            </div>
-          </div>
         </li>
       </ul>
     </div>

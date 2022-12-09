@@ -72,28 +72,28 @@
     // $query = _query("DELETE FROM brand WHERE id=15");
 
 
-    function _login($login){
-        if(isset($_SESSION['person_id'])){
-            $id = $_SESSION['person_id'];
+    function _login($login,$person){
+        if(isset($_SESSION[''.$person.'_id'])){
+            $id = $_SESSION[''.$person.'_id'];
             if($id>0){
               header("location:$login.php");
             }
           }
-          if(isset($_COOKIE['person_id'])){
-            $id = $_COOKIE['person_id'];
+          if(isset($_COOKIE[''.$person.'_id'])){
+            $id = $_COOKIE[''.$person.'_id'];
             if($id>0){
               header("location:$login.php");
             }
           }
     }
 
-    function _logout($logout){        
-        if(isset($_COOKIE['person_id'])){
-            setcookie('person_id','', time() - 86000);
+    function _logout($logout,$person){        
+        if(isset($_COOKIE[''.$person.'_id'])){
+            setcookie(''.$person.'_id','', time() - 86000);
         }
         if(!session_start()){session_start();}
-        if(isset($_SESSION['person_id'])){
-            unset($_SESSION['person_id']);
+        if(isset($_SESSION[''.$person.'_id'])){
+            unset($_SESSION[''.$person.'_id']);
             session_destroy();
             header("location:$logout.php");
         }

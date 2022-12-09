@@ -1,16 +1,16 @@
 <?php include("admin/config/functions.php");
-_login("index");
+_login("index","user");
 
 //============login========//
 if(isset($_POST['submit'])){
   $email =$_POST['email'];
   $pass = md5($_POST['pass']);
-          $row = _fetch("person","email='$email' AND password='$pass' AND role='Admin'");
+          $row = _fetch("person","email='$email' AND password='$pass'");
           if($row>0){
               $id = $row['id'];
-              $_SESSION['person_id'] = $id;
-              setcookie('person_id', $id , time()+86000);
-              header('location:index.php?msg=Successfully_Logged_In');
+              $_SESSION['user_id'] = $id;
+              setcookie('user_id', $id , time()+86000);
+              header('location:dashboard.php?msg=Successfully_Logged_In');
           }else{
               $msg = "You have no account! Please Sign Up.";
           } 
@@ -117,8 +117,6 @@ if(isset($_POST['submit'])){
           </a>
         </li>
       </ul>
-
-
     </div>
   </header>
 
