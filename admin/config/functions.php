@@ -3,7 +3,7 @@
     // <!-- ===================Sortcut for query=========== --> 
     function _fetchAll($table){
     global $conn;
-    $query = "SELECT * FROM $table";
+    $query = "SELECT * FROM $table ORDER BY id DESC";
     return mysqli_fetch_assoc(mysqli_query($conn,$query));
     }
     //made by php_munna
@@ -15,7 +15,7 @@
     //made by php_munna     
     function _getAll($table){
     global $conn;
-    $query = "SELECT * FROM $table";
+    $query = "SELECT * FROM $table ORDER BY id DESC";
     return mysqli_query($conn,$query);
     }
     //made by php_munna 

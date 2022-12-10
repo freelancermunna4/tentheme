@@ -43,9 +43,10 @@ if(isset($_POST['submit'])){
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="category">Category</label>
             <select name="category" class="input">
-              <option value="PHP">PHP</option>
-              <option value="HMTL">HMTL</option>
-              <option value="Javascript">Javascript</option>
+            <?php $category_all = _getAll("category");
+              while($ctg = mysqli_fetch_assoc($category_all)){ ?>
+              <option value="PHP"><?php echo $ctg['category']?></option>
+              <?php }?>
             </select>
           </div>
 

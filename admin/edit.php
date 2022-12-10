@@ -23,25 +23,8 @@ if(isset($_POST['submit'])){
     $status = $_POST['status'];
 
     $pid = $person['id'];
-
-
-  $file_name1 = $_FILES['file1']['name'];
-  $file_tmp1 = $_FILES['file1']['tmp_name'];
-  move_uploaded_file($file_tmp1,"upload/$file_name1");
-
-  $file_name2 = $_FILES['file2']['name'];
-  $file_tmp2 = $_FILES['file2']['tmp_name'];
-  move_uploaded_file($file_tmp2,"upload/$file_name2");
-
-  $file_name3 = $_FILES['file3']['name'];
-  $file_tmp3 = $_FILES['file3']['tmp_name'];
-  move_uploaded_file($file_tmp3,"upload/$file_name3");
-
-  $file_name4 = $_FILES['file4']['name'];
-  $file_tmp4 = $_FILES['file4']['tmp_name'];
-  move_uploaded_file($file_tmp4,"upload/$file_name4");
-
-    $update = _update("$table","pid='$pid',title='$title',link='$link',regular_price='$regular_price',sell_price='$sell_price',category='$category',mini_content='$mini_content',content='$content',description='$description',status='$status',file_name1='$file_name1',file_name2='$file_name2',file_name3='$file_name3',file_name4='$file_name4'","id=$id");
+  
+    $update = _update("$table","pid='$pid',title='$title',link='$link',regular_price='$regular_price',sell_price='$sell_price',category='$category',mini_content='$mini_content',content='$content',description='$description',status='$status'","id=$id");
     if($update){
       $msg = "Successfully Updated";
       header("Location:$src.php?msg=$msg");
@@ -103,25 +86,23 @@ if(isset($_POST['submit'])){
             <label for="category">Category</label>
             <select name="category" class="input">              
               <option style="display:none" selected value="<?php echo $data['category']?>"><?php echo $data['category']?></option>
-              <option value="PHP">PHP</option>
-              <option value="HMTL">HMTL</option>
-              <option value="Javascript">Javascript</option>
+              <?php $category_all = _getAll("category");
+              while($ctg = mysqli_fetch_assoc($category_all)){ ?>
+              <option value="PHP"><?php echo $ctg['category']?></option>
+              <?php }?>
             </select>
           </div>
 
-          <label for="product Description">Upload Some Screenshot</label>
-          <div style="width:100%;display:flex;gap:30px">
-            <input name="file1" style="width:25%;padding-top:10px" class="input" type="file" id="product Link" >
-            <input name="file2" style="width:25%;padding-top:10px" class="input" type="file" id="product Link">
-            <input name="file3" style="width:25%;padding-top:10px" class="input" type="file" id="product Link">
-            <input name="file4" style="width:25%;padding-top:10px" class="input" type="file" id="product Link">
-          </div>
-
-          <div style="padding-top:33px">
+          <div>
             <label for="status">Status</label>
             <select name="status" class="input">
-              <option selected value="Pending">Pending</option>
-              <option value="Publish">Publish</option>
+              <?php if($data['status']== 'Pending'){ ?>
+                <option selected value="Pending">Pending</option>
+                <option value="Publish">Publish</option>
+               <?php }else{ ?>
+                <option value="Pending">Pending</option>
+                <option selected value="Publish">Publish</option>
+                <?php } ?>
             </select>
           </div>
 
