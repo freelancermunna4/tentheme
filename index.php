@@ -18,26 +18,26 @@
         <br>
           <div class="items list_view">
             
-          <?php for($i = 0;$i<=10;$i++){ ?>
+          <?php 
+          $products = _get("products","status='Publish' ORDER BY id DESC");
+          
+          while($data = mysqli_fetch_assoc($products)){
+            $autor_id = $data['pid'];
+            $autor = _fetch("person","id=$autor_id");
+          ?>
             <div class="item">
-              <a href="item.php" class="item_link"></a>
+              <a href="item.php?id=<?php echo $data['id']?>" class="item_link"></a>
               <div>
                 <img class="w-full h-auto"
-                  src="https://themeforest.img.customer.envatousercontent.com/files/398879361/Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=3b0e5cf150cad45010303b0172d5083b"
+                  src="admin/upload/<?php echo $data['file_name1']?>"
                   alt="" />
               </div>
 
               <div>
-                <h3>
-                  Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net,
-                  Django & Laravel Admin Dashboard Theme
-                </h3>
-                <p><small> <i>by</i> <a href="index.php"> bangladeshisoftware</a>
-                  </small></p>
+                <h3 style="padding-left:13px"><?php echo $data['title']?></h3>
+                <p style="padding-left:13px"><small> <i>by</i> <a href="index.php?autor=<?php echo $autor['name']?>"><?php echo $autor['name']?></a></small></p>
                 <ul class="list_icon">
-                  <li>Trusted by 100,000 world wide</li>
-                  <li>22 demos with dark mode</li>
-                  <li>Bootstrap 5 Vue React Angular Laravel Django</li>
+                  <?php echo $data['mini_content']?>
                 </ul>
               </div>
 
@@ -47,9 +47,9 @@
                 <div>                  
                   <div>
                     <span class="font-medium">TK.</span>
-                    <span>5500</span>
+                    <span><?php echo $data['sell_price']?></span>
                   </div>
-                  <p>1.3k Sales</p>
+                  <p><?php echo $data['sell']?> Sales</p>
                   <div>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
@@ -67,8 +67,8 @@
                 </div>
 
                 <div>
-                  <a onclick="show_added_popup('4')" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
-                  <a href="#">
+                  <a id="show_added_popup" href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+                  <a target="_blank" href="<?php echo $data['link']?>">
                     <span>Live</span>
                     <span>Preview</span>
                   </a>
@@ -136,7 +136,7 @@
       class="fixed inset-0 m-auto w-full h-full bg-black bg-opacity-50 flex items-center justify-center z-30">
     </div>
 
-    <div class="relative z-40 bg-white rounded shadow w-fit h-fit p-6 flex flex-col gap-y-5">
+    <div style="top:50%;left:22%;transform: translate(22%, -50%);" class="relative z-40 bg-white rounded shadow w-fit h-fit p-6 flex flex-col gap-y-5">
       <h3 class="flex items-center gap-x-3 text-xl font-semibold tracking-wide text-gray-800">
         <i class="fa-solid fa-check"></i>
         <span>Item added to your cart</span>
@@ -178,6 +178,17 @@
     </div>
   </div>
   <!-- Cart Popup --->
+
+  <script>
+    show_added_popup
+    $("#show_added_popup").on("click",function(){
+      $(".cart_added_popup").show();
+
+    });
+  </script>
+
+
+
 
   <br>
   <br>

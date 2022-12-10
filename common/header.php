@@ -72,11 +72,11 @@
         </li>
         <li>
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white" href="team.php">Team</a>
-        </li>
+        <!-- </li>
         <li>
           <a class="flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"
             href="investor.php">Investor</a>
-        </li>
+        </li> -->
 
         <li class="relative header_sub_parent">
           <a class="header_sub_ul_toggle flex items-center px-3 h-[44px] rounded text-gray-900 hover:bg-white"

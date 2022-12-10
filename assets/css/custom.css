@@ -55,3 +55,7 @@
     background: #000;
     color: #fff;   
 }
+
+.checkout_pop{
+    top: 50%;left: 22%;transform: translate(20%, -50%);
+}
