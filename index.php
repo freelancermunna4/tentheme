@@ -28,9 +28,8 @@
             <div class="item">
               <a href="item.php?id=<?php echo $data['id']?>" class="item_link"></a>
               <div>
-                <img class="w-full h-auto"
-                  src="admin/upload/<?php echo $data['file_name1']?>"
-                  alt="" />
+                <img class="w-full h-auto rounded"
+                  src="admin/upload/<?php echo $data['file_name1']?>"/>
               </div>
 
               <div>

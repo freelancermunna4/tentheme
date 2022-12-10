@@ -5,7 +5,7 @@
 if(isset($_GET['id'])){
   $id = $_GET['id'];
 }
-$data = _fetch("blog","id=$id");
+$data = _fetch("service","id=$id");
 
 ?>
     <!-- Sub Header -->
@@ -24,15 +24,61 @@ $data = _fetch("blog","id=$id");
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
 
         <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
-          class="text-white px-4 py-1.5 rounded shadow-sm" href="blog.php"><?php echo $data['title']?></a>
+          class="text-white px-4 py-1.5 rounded shadow-sm" href="item.php"><?php echo $data['title']?></a>
 
       </div>
       <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      
+      <!-- Basic Info -->
+      <div class="flex items-center flex-wrap gap-x-6 gap-y-3 text-xs sm:text-base mt-12 ">
+        <p class="text-gray-500 flex items-center gap-x-1">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span><?php echo $data['sell']?> sales</span>
+        </p>
+        <p class="text-green-600 flex items-center gap-x-1">
+          <span>Recently Updated</span>
+          <i class="fa-solid fa-circle-check"></i>
+        </p>
+        <p class="text-green-600 flex items-center gap-x-1">
+          <span>Well Documented</span>
+          <i class="fa-solid fa-circle-check"></i>
+        </p>
+      </div>
+
+      <!-- Reviews&Comments -->
+      <div class="flex items-center justify-start pt-6 overflow-auto" style="margin-bottom:-2px;">
+
+        <a href="#" data-item="item_details" class="item_content_toggler active flex items-center gap-x-1 px-6 py-3">
+          <span class="font-normal tracking-wide">Item</span>
+          <span class="font-normal tracking-wide">Details</span>
+        </a>
+
+        <a href="#" data-item="item_reviews" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
+          <span class="font-normal tracking-wide">Reviews</span>
+          <p class="relative text-sm h-fit w-fit flex items-center justify-center text-gray-200">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span style="width:88%"
+              class="absolute text-sm left-0 inset-y-0 my-auto flex overflow-hidden text-yellow-500">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </span>
+          </p>
+          <span>4.3</span>
+          <span class="px-2 text-xs py-1 rounded bg-cyan-700 text-white shadow block"><?php echo $data['review']?></span>
+        </a>
+
+        <a href="#" data-item="item_comments" class="item_content_toggler flex items-center gap-x-2 px-6 py-3">
+          <span class="font-normal tracking-wide">Comments</span>
+          <span class="px-2 text-xs py-1 rounded bg-cyan-700 text-white shadow block"><?php echo $data['comment']?></span>
+        </a>
+
+      </div>
     </div>
   </header>
 
@@ -52,14 +98,20 @@ $data = _fetch("blog","id=$id");
             <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
             rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" class="bg-white border p-4">
               <a href="#" class="block w-full">
-                <img class="w-full" src="admin/upload/<?php echo $data['file_name']?>">
+                <img class="w-full" src="admin/upload/<?php echo $data['file_name1']?>">
               </a>
 
               <div class="pt-6 pb-4 gap-x-4 flex-wrap flex justify-center">
-                <a target="_blank" href="blog.php?category=<?php echo $data['category']?>"
+                <a target="_blank" href="<?php echo $data['link']?>"
                   class="block px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 focus:ring-2 ring-blue-500 focus:ring-offset-2 w-fit  text-white tracking-wide space-x-1">
-                  <i class="fa-solid fa-tags"></i>
-                  <span><?php echo $data['category']?></span>
+                  <span>Live Preview</span>
+                  <i class="fa-regular fa-eye"></i>
+                </a>
+
+                <a href=""
+                  class=" block px-4 py-2 rounded bg-gray-500 hover:bg-gray-500 focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 w-fit text-white tracking-wide space-x-1">
+                  <span>Screenshots</span>
+                  <i class="fa-solid fa-image"></i>
                 </a>
 
 
@@ -84,9 +136,7 @@ $data = _fetch("blog","id=$id");
             </div>
 
             <!-- Others Theme Content -->
-            <div><?php echo $data['summery']?></div>
-            <br>
-            <div><?php echo $data['content']?></div>
+            <div><?php echo $data['description']?></div>
 
           </div>
 
@@ -260,71 +310,94 @@ $data = _fetch("blog","id=$id");
 
           <div class="w-full sticky top-0 pt-12">
             <!-- Price&Cart-Button area -->
-            <label for="voice-search" class="sr-only">Search</label>
-          <div class="relative w-full">
-            <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none text-green-600">
-              <i class="fa-solid fa-search"></i>
-            </div>
-            <input class="shadow w-full h-12 rounded-t px-10 focus:ring-2 focus:outline-none focus:ring-gray-200"
-              type="text" id="voice-search" placeholder="Search..." required />
-            <button type="button"
-              class="flex absolute inset-y-0 right-1.5 text-sm items-center text-green-700 px-2 h-fit py-2 my-auto rounded">
-              Search
-            </button>
-          </div>
-
-          <!-- Filter by Category -->
-          <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" class="sidebar_item overflow-hidden bg-white shadow px-5">
-            <button class="ds_title" data-ref="Category">
-              <span>Category</span>
-              <span>
-                <i class="fa-solid fa-chevron-down"></i>
-              </span>
-            </button>
-            <div class="ds_div" data-ref="Category">
-              <div class="py-0">
-                <div class="flex justify-between items-center p-2 hover:bg-cyan-800 hover:text-white rounded">
-                  <h6 class="text-sm font-medium">All Categories</h6>
-                  <small>192</small>
+            <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+          rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" class="w-full border p-6 space-y-5">
+              <div class="flex justify-between items-center relative">
+                <button class="toggle_license" class="font-medium text-lg">
+                  <span class="item_title">Sell Price</span>
+                  <small class="text-gray-500"><i class="fa-solid fa-caret-right"></i></small>
+                </button>
+                <div class="relative">
+                  <div class="flex items-start text-gray-800 absolute right-0 -top-5">
+                    <span class="text-sm">$.</span>
+                    <del class="text-base font-medium tracking-wide items_del_price"><?php echo $data['regular_price']?></del>
+                  </div>
+                  <div class="flex items-start text-green-600">
+                    <span class="text-sm">$.</span>
+                    <h4 class="text-xl font-semibold tracking-wide items_price"><?php echo $data['sell_price']?></h4>
+                  </div>
                 </div>
-                <ul class="pb-3">
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>WordPress</span>
-                    <span>12</span>
-                  </li>
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>eCommerce</span>
-                    <span>9</span>
-                  </li>
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>JamStack</span>
-                    <span>12</span>
-                  </li>
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>Blogging</span>
-                    <span>20</span>
-                  </li>
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>Courses</span>
-                    <span>12</span>
-                  </li>
-                  <li
-                    class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
-                    <span>Portfolio</span>
-                    <span>12</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
-        <br>
+                <!-- <div
+                  class="hidden item_licenses absolute top-[115%] inset-x-0 z-40 max-w-[350px] border shadow bg-white rounded">
+                  <div data-title="Regular License" data-price="33" data-oldprice="44"
+                    class="item_license p-5 border-b cursor-pointer hover:bg-gray-100 group">
+                    <div class="flex justify-between items-center">
+                      <h4 class="text-base font-semibold">Regular License</h4>
+                      <h2 class="flex items-start">
+                        <small>$</small>
+                        <span class="text-xl font-semibold text-gray-900">33</span>
+                      </h2>
+                    </div>
+                    <p class="text-gray-600 py-1 text-sm font-normal">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum reiciendis beatae, nulla maxime
+                      animi accusamus.
+                    </p>
+
+                    <div
+                      class="absolute -top-2 -z-10 rounded left-4 w-4 h-4 bg-white group-hover:bg-gray-100 border-l border-t transform rotate-45">
+                    </div>
+                  </div>
+
+                  <div data-title="Regular License" data-price="250" data-oldprice="400"
+                    class="item_license p-5 border-b cursor-pointer hover:bg-gray-100">
+                    <div class="flex justify-between items-center">
+                      <h4 class="text-base font-semibold">Extended License</h4>
+                      <h2 class="flex items-start">
+                        <small>$</small>
+                        <span class="text-xl font-semibold text-gray-900">300</span>
+                      </h2>
+                    </div>
+                    <p class="text-gray-600 py-1 text-sm font-normal">
+                      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eum reiciendis beatae, nulla maxime
+                      animi accusamus.
+                    </p>
+                  </div>
+
+                  <div class="px-5 py-3">
+                    <a href="#" class="text-blue-500 hover:underline text-center block text-sm">View license details</a>
+                  </div>
+                </div> -->
+
+              </div>
+
+
+              <div class="w-full border-b"> </div>
+
+
+              <ul class="space-y-2 text-sm">
+              <?php echo $data['mini_content']?>
+              </ul>
+
+              <a href="cart.php?id=<?php echo $data['id']?>"
+                class="w-full h-11 flex items-center justify-center rounded focus:ring-2 ring-green-600 ring-offset-2 bg-green-600 text-white gap-x-2">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Buy Now</span>
+              </a>
+
+            </div>
+
+            <br>
+
+            <!-- Necessary Information -->
+            <div style="box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+          rgba(0, 0, 0, 0.06) 0px 0px 0px 1px !important;" class="border bg-white p-4 space-y-4">
+
+            <?php echo $data['content']?>
+
+            </div>
+
+            <br>
 
             <div>
               <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Products</h3>

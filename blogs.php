@@ -114,95 +114,24 @@
         <div class="div">
           <div class="w-full grid grid-cols-2 gap-6">
 
+          <?php 
+          $blog = _get("blog","status='Publish' ORDER BY id DESC");
+          
+          while($data = mysqli_fetch_assoc($blog)){
+            $autor_id = $data['pid'];
+            $autor = _fetch("person","id=$autor_id");
+          ?>
             <div class="p-5 bg-white shadow rounded relative">
-              <a href="blog.php" class="absolute inset-0 m-auto z-40"></a>
+              <a href="blog.php?id=<?php echo $data['id']?>" class="absolute inset-0 m-auto z-40"></a>
               <img class="w-full"
-                src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/01/money-exchangerix-website-1270x714.jpg"
-                alt="">
-              <h3 class="text-lg font-semibold tracking-wide my-4">Store Management
-                Software 4999 Tk Xstorebd.com
-              </h3>
-              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full">
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  design</a>
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  development</a>
+                src="admin/upload/<?php echo $data['file_name']?>">
+              <h3 class="text-lg font-semibold tracking-wide my-4"><?php echo $data['title']?></h3>
+              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full" style="justify-content: space-between;">
+                <a href="#" class="px-2 py-1 bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1"><?php echo $data['category']?></a>
+                <a href="#" class="px-2 py-1 rounded-sm "><?php echo $autor['name']." ". date("d-M-y",$data['time']);?></a>
               </div>
             </div>
-
-            <div class="p-5 bg-white shadow rounded relative">
-              <a href="blog.php" class="absolute inset-0 m-auto z-40"></a>
-              <img class="w-full"
-                src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/01/money-exchangerix-website-1270x714.jpg"
-                alt="">
-              <h3 class="text-lg font-semibold tracking-wide my-4">Store Management
-                Software 4999 Tk Xstorebd.com
-              </h3>
-              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full">
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  design</a>
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  development</a>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white shadow rounded relative">
-              <a href="blog.php" class="absolute inset-0 m-auto z-40"></a>
-              <img class="w-full"
-                src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/01/money-exchangerix-website-1270x714.jpg"
-                alt="">
-              <h3 class="text-lg font-semibold tracking-wide my-4">Store Management
-                Software 4999 Tk Xstorebd.com
-              </h3>
-              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full">
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  design</a>
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  development</a>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white shadow rounded relative">
-              <a href="blog.php" class="absolute inset-0 m-auto z-40"></a>
-              <img class="w-full"
-                src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/01/money-exchangerix-website-1270x714.jpg"
-                alt="">
-              <h3 class="text-lg font-semibold tracking-wide my-4">Store Management
-                Software 4999 Tk Xstorebd.com
-              </h3>
-              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full">
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  design</a>
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  development</a>
-              </div>
-            </div>
-
-            <div class="p-5 bg-white shadow rounded relative">
-              <a href="blog.php" class="absolute inset-0 m-auto z-40"></a>
-              <img class="w-full"
-                src="https://www.bangladeshisoftware.com/wp-content/uploads/2022/01/money-exchangerix-website-1270x714.jpg"
-                alt="">
-              <h3 class="text-lg font-semibold tracking-wide my-4">Store Management
-                Software 4999 Tk Xstorebd.com
-              </h3>
-              <div class="flex items-center gap-2 relative z-50 truncate flex-wrap w-full">
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  design</a>
-                <a href="#"
-                  class="px-2 py-1 bg-gray-900 hover:bg-[#f75389] text-white rounded-sm shadow-sm focus:ring-1 focus:ring-offset-1">web
-                  development</a>
-              </div>
-            </div>
+            <?php }?>
 
           </div>
 
