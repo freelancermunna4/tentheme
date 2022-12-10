@@ -14,15 +14,16 @@ if(isset($_GET['src'])){
     $phone = $_POST['phone'];
     $email = $_POST['email'];
     $address = $_POST['address'];
+    $balance = $_POST['balance'];
     $role = $_POST['role'];
 
     $file_name = $_FILES['file']['name'];
     $file_tmp = $_FILES['file']['tmp_name'];
     move_uploaded_file($file_tmp,"upload/$file_name");
     if(empty($file_name)){
-      $insert = _update("$table","name='$name',phone='$phone',email='$email',address='$address',role='$role'","id=$id");
+      $insert = _update("$table","name='$name',phone='$phone',email='$email',address='$address',balance='$balance',role='$role'","id=$id");
     }else{
-      $insert = _update("$table","name='$name',phone='$phone',email='$email',address='$address',role='$role',file_name='$file_name'","id=$id");
+      $insert = _update("$table","name='$name',phone='$phone',email='$email',address='$address',balance='$balance',role='$role',file_name='$file_name'","id=$id");
     }
 
     if($insert){
@@ -59,6 +60,13 @@ if(isset($_GET['src'])){
             <label for="address">Address</label>
             <input name="address" class="input" type="address" id="address" placeholder="address" required value="<?php echo $data['address']?>">
           </div>
+
+          <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
+            <label for="balance">Balance</label>
+            <input name="balance" class="input" type="number" id="balance" placeholder="Balance" required value="<?php echo $data['balance']?>">
+          </div>
+
+          
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="file">Image</label>
             <input style="padding-top:10px;" name="file" class="input" type="file" id="address" placeholder="Image">
@@ -68,7 +76,7 @@ if(isset($_GET['src'])){
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="role">User Type</label>
             <select class="select" name="role" id="role">
-              <option style="display:none;" selected value=<?php echo $data['role']?>""><?php echo $data['role']?></option>
+              <option style="display:none;" selected value="<?php echo $data['role']?>"><?php echo $data['role']?></option>
               <option value="User">User</option>
               <option value="Moderator">Moderator</option>
               <option value="Admin">Admin</option>

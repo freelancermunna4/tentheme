@@ -1,35 +1,34 @@
 <?php include("common/header-sidebar.php");?>
-
 <div class="x_container space-y-10 py-10">
-    <div class="flex flex-col rounded-lg shadow-md border border-[
-        ] shadow-gray-200 bg-white">
+    <div class="flex flex-col rounded-lg shadow-md border border-[] shadow-gray-200 bg-white">
         <div class="overflow-x-auto rounded-lg">
             <div class="inline-block min-w-full align-middle">
                 <div class="overflow-auto bg-white">
                   <div style="display:flex;justify-content:space-between">
                     <div style="display:flex">
+                      <select style="margin: 15px;width:300px;" name="" class="input" id="category">
+                          <?php if(isset($_GET['src'])){?>
+                          <option style="display:none" selected value="<?php echo $_GET['src']?>"><?php echo $_GET['src']?></option>
+                          <?php }else{?>
+                          <option style="display:none" selected>Category</option>
+                          <?php }?>
+                          <?php $category_all = _getAll("category");
+                          while($ctg = mysqli_fetch_assoc($category_all)){ ?>
+                          <option value="<?php echo $ctg['category']?>"><?php echo $ctg['category']?></option>
+                          <?php }?>
+                      </select>
 
-                      <select style="margin: 15px;width:300px;" name="sort" class="input" id="sort">
+                      <select style="margin: 15px;" name="" class="input" id="sort">
                           <?php if(isset($_GET['sort'])){?>
                           <option style="display:none" selected value="<?php echo $_GET['sort']?>"><?php echo $_GET['sort']?></option>
                           <?php }else{?>
                           <option style="display:none" selected>Select</option>
                           <?php }?>
-                          <option value="ASC">ASC</option>
-                          <option value="DESC">DESC</option>
+                          <option value="ASC">Old To New</option>
+                          <option value="DESC">New To Old</option>
                       </select>
 
-                      <select style="margin: 15px;width:300px;" name="role" class="input" id="role">
-                          <?php if(isset($_GET['role'])){?>
-                          <option style="display:none" selected value="<?php echo $_GET['role']?>"><?php echo $_GET['role']?></option>
-                          <?php }else{?>
-                          <option style="display:none" selected>Select</option>
-                          <?php }?>
-                          <option value="User">User</option>
-                          <option value="Moderator">Moderator</option>
-                      </select>
-
-                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="users.php">Refresh <i  class="fa-solid fa-rotate-right"></i></a>
+                      <a style="margin:15px;display:block;text-align:center;padding-top:12px;" class="input" href="published-blogs.php"> <i class="fa-solid fa-rotate-right"></i> Refresh</a>
 
                       <script type="text/javascript">
                           $(function () {
@@ -41,11 +40,10 @@
                                   }
                               });
                           });
-
                           $(function () {
-                              $('#role').on('change', function () {
+                              $('#category').on('change', function () {
                                   var val = $(this).find("option:selected").val();
-                                  var url = self.location.href.split('?')[0] + '?role=' +val;
+                                  var url = self.location.href.split('?')[0] + '?src=' +val;
                                   if (url != "") {
                                       window.location.href = url;
                                   }
@@ -55,7 +53,7 @@
                     </div>
 
                     <div>
-                    <form action="" method="GET">
+                      <form action="" method="GET">
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
                             <input name="src" type="search" id="srcvalue" placeholder="Search Here..." style="padding: 8px;border: 2px solid #ddd;border-radius:5px;">
                             <button type="submit" name="search" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Search</button>
@@ -63,19 +61,18 @@
                     </form>
                     </div>
                   </div>
-                    
 
 
-                    <!-- Table -->
-                    <?php 
-                  if(isset($_POST['check'])){
+                
+                  <?php 
+                  if(isset($_POST['submit'])){
                     if(isset($_POST['check_list'])){
                       $check_list = $_POST['check_list'];
                       for($i=0;$i<count($check_list);$i++){
-                        $delete = _delete("person","id=$check_list[$i]");
+                        $delete = _delete("blog","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:users.php?msg=$msg");
+                      header("location:published-blogs.php?msg=$msg");
                     }
                   }
                   ?>
@@ -85,32 +82,29 @@
                   <thead class="bg-white">
                     <tr>
                       <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">
-                        <input name="check" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
+                        <input name="submit" id="submit" style="background:red;padding:5px 10px;color:#fff;border-radius:2px;" type="submit" value="Delete">
                       </th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Image</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Name</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Phone</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Email</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Address</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Balance</th>
-                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Role</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Tumbnail</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Title</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Category</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Date</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Autor</th>
+                      <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5">Status</th>
                       <th scope="col" class="text-center p-4 text-xs font-medium text-left text-gray-500 uppercase lg:p-5"> Actions</th>
 
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php
+                    <?php 
                     if(isset($_GET['src'])){
                       $src = trim($_GET['src']);
-                      $person = _get("person","role !='Admin' AND (name='$src' OR phone='$src' OR email='$src' OR role='$src' OR address LIKE '%$src%')");                    
-                    }elseif(isset($_GET['role'])){
-                      $src = trim($_GET['role']);
-                      $person = _get("person","role !='Admin' AND role='$src'");                    
+                      $blog = _get("blog","status='Publish' AND (title='$src' OR category='$src')");                       
+
                     }elseif(isset($_GET['sort'])){
                       if($_GET['sort']== 'ASC'){
-                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name ASC");
+                        $blog =_get("blog","status='publish' ORDER BY id ASC");
                       }else{
-                        $person =_query("SELECT * FROM person WHERE role !='Admin'  ORDER BY name DESC");
+                        $blog =_get("blog","status='publish' ORDER BY id DESC");
                       }
                     }else{
                     
@@ -123,34 +117,31 @@
                     $next_page = $page_no + 1;
                     $adjacents = "2"; 
 
-                    $person =_query("SELECT * FROM person WHERE role !='Admin' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_getAll("person")); 
+                    $blog =_get("blog","status='publish' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("blog","status='publish'")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
-                      }
-                    $i=0;
-                    while($data = mysqli_fetch_assoc($person)){ $i++
+                    }
+
+                    while($data = mysqli_fetch_assoc($blog)){
+                    $person_id = $data['pid'];
+                    $person_info = _fetch("person","id=$person_id");
                     ?>
                       <tr class="hover:bg-gray-100">
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">
                           <input name="check_list[]" type="checkbox" value="<?php echo $data['id']?>">
                         </td>
                         <td><img style="margin:0 auto;width:100;height:50px;object-fit:cover" src="upload/<?php echo $data['file_name']?>"></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['name']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['phone']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['email']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['address']?></td>
-                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5">৳ <?php echo $data['balance']?></td>
-                        <?php if($data['role']=='User'){?>
-                        <td class="p-4 text-sm font-normal text-red-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
-                        <?php }else{?>
-                          <td class="p-4 text-sm font-normal text-green-500 whitespace-nowrap lg:p-5"><?php echo $data['role']?></td>
-                        <?php }?>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['title']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['category']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo date("d-M-y",$data['time']);?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $person_info['name']?></td>
+                        <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['status']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a id="add_bank" href="edit-person.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
-                          <a href="delete.php?src=users&&table=person&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
-                          <a target="_blank" href="../login.php?email=<?php echo $data['email']?>&&pass=<?php echo $data['password']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Login</a>
+                          <a href="edit-blog.php?src=published-blogs&&table=blog&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">Edit</a>
+                          <a href="delete.php?src=published-blog&&table=blog&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                          <a target="_blank" href="../blog.php?src=published-products&&table=products&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white" style="background:#4ade80;">View</a> 
                         </td>
                       </tr>
                       <?php }?>
@@ -264,48 +255,11 @@
 </main>
 
 <!-- All Popup -->
-  <!-- Add New Pack Popup -->
-  <div data-target="add_bank"
-    class="popup_wrapper overflow-y-auto overflow-x-hidden fixed right-0 left-0 top-4 z-50 justify-center items-center md:inset-0 sm:h-full flex"
-    id="delete-product-modal" style="z-index: 111; display: none;">
-    <div data-target="add_bank" class="popup_remove w-full h-screen bg-black bg-opacity-50 z-40 fixed inset-0 m-auto">
-    </div>
-    <div class="relative p-4 w-full max-w-md h-full md:h-auto z-50">
-      <div class="relative bg-white rounded-2xl shadow-lg p-6 pt-4">
-        <div class="flex justify-end">
-          <button type="button" data-target="add_bank"
-            class="popup_remove text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-2xl text-sm w-8 h-8 flex items-center justify-center ml-auto"
-            data-modal-toggle="delete-product-modal"> <i class="fa-solid fa-xmark"></i>
-          </button>
-        </div>
 
-        <form class="flex flex-col gap-y-6">
-          <h2 class="text-lg font-semibold text-cyan-900">New Bank</h2>
-          <div class="flex flex-col gap-y-1">
-            <label for="Bank Name">Bank Name</label>
-            <input type="text" id="Bank Name" placeholder="Bank Name" class="input" required>
-          </div>
-
-          <div class="flex flex-col gap-y-1">
-            <label for="Currency Symble">Currency Symble</label>
-            <input type="text" id="Currency Symble" placeholder="Currency Symble" class="input" required>
-          </div>
-
-          <div class="flex flex-col gap-y-1">
-            <label for="Bank Info">Bank Info</label>
-            <input type="text" id="Bank Info" placeholder="Bank Info" class="input" required>
-          </div>
-
-          <div class="flex justify-end">
-            <button class="button">Submit</button>
-          </div>
-        </form>
-
-      </div>
-    </div>
-  </div>
 
 <script src="js/app.js"></script>
+
+
 
 </body>
 

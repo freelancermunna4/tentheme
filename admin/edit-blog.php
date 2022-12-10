@@ -60,7 +60,7 @@ if(isset($_POST['submit'])){
               <option selected value="<?php echo $data['category']?>"><?php echo $data['category']?></option>
               <?php $category_all = _getAll("category");
               while($ctg = mysqli_fetch_assoc($category_all)){ ?>
-              <option value="PHP"><?php echo $ctg['category']?></option>
+              <option value="<?php echo $ctg['category']?>"><?php echo $ctg['category']?></option>
               <?php }?>
             </select>
           </div>

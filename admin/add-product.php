@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
             <label for="regular_price Coin">Regular Price</label>
-            <input name="regular_price" class="input" type="number" id="Regular Price" placeholder="Reward Coin" required>
+            <input name="regular_price" class="input" type="number" id="Regular Price" placeholder="Regular Price" required>
           </div>
 
           <div class="col-span-2 lg:col-span-1 flex flex-col gap-y-1">
