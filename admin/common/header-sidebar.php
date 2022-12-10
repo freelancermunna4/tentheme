@@ -143,13 +143,42 @@
           <li>
             <a href="./pending-service.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Pending Service</span>
+              <span>Pending Services</span>
             </a>
           </li>
           <li>
             <a href="./published-service.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
-              <span>Published Service</span>
+              <span>Published Services</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <hr class="my-0">
+
+      <!-- Sidebar Item -> products -->
+      <div class="sidebar_item overflow-hidden">
+        <button class="ds_title" data-ref="blog"><span class="text-xs transition-all text-pink-600"><i
+              class="fa-solid fa-briefcase"></i></span><span class="tracking-wider block">Blogs</span><span
+            class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
+        </button>
+        <ul class="ds_ul transition-all" data-ref="blog">
+          <li>
+            <a href="./add-blog.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Add Blog</span>
+            </a>
+          </li>
+          <li>
+            <a href="./pending-blogs.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Pending Blogs</span>
+            </a>
+          </li>
+          <li>
+            <a href="./published-blogs.php">
+              <h4> <i class="fa-solid fa-briefcase"></i> </h4>
+              <span>Published Blogs</span>
             </a>
           </li>
         </ul>
