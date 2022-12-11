@@ -3,14 +3,14 @@
     <div class="container grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-12">
 
       <div class="space-y-6">
-        <img class="w-36" src="assets/images/logo.png" alt="">
+        <img class="w-36" src="admin/upload/<?php echo $website['file_name']?>" alt="">
         <div class="flex space-x-5">
-          <a href="https://www.facebook.com/bangladeshisoftware"
+          <a target="_blank" href="<?php echo $website['facebook']?>"
             class="bg-blue-600 text-white px-4 py-1 rounded shadow-sm">
             <i class="fa-brands fa-facebook"></i>
             <small>Facebook</small>
           </a>
-          <a href="https://www.facebook.com/bangladeshisoftware"
+          <a target="_blank" href="<?php echo $website['youtube']?>"
             class="bg-red-600 text-white px-4 py-1 rounded shadow-sm">
             <i class="fa-brands fa-youtube"></i>
             <small>Youtube</small>
@@ -19,9 +19,7 @@
       </div>
 
       <div>
-        <p>Bangladeshi Software is the biggest Software Company In Bangladesh. We provide any Desktop & Android
-          Software.
-          We Provide 100 Percent Customer Satisfaction Copyright © by SHAMIMLEM.</p>
+        <p><?php echo $website['description']?></p>
       </div>
 
       <div class="2xl:pl-20">
@@ -62,12 +60,12 @@
 
           <li class="space-x-2 text-sm font-medium hover:text-gray-600">
             <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="mailto:shamimlem@yahoo.com">shamimlem@yahoo.com</a>
+            <a href="mailto:<?php echo $website['mail']?>"><?php echo $website['mail']?></a>
           </li>
 
           <li class="space-x-2 text-sm font-medium hover:text-gray-600">
             <small class="text-xs"><i class="fa-solid fa-chevron-right"></i></small>
-            <a href="tel:+08801719182586">+08801719182586</a>
+            <a href="tel:<?php echo $website['phone']?>"><?php echo $website['phone']?></a>
           </li>
 
         </ul>
@@ -84,7 +82,7 @@
       </ul>
 
       <p class="w-full xl:text-right">
-        <span class="text-gray-700 text-base"> All Rights Reserved © Bangladeshi Software 2022 <span>SHAMIMLEM.</span>
+        <span class="text-gray-700 text-base"><?php echo $website['footer_text']?></span>
       </p>
     </div>
 

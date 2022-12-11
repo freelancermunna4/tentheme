@@ -1,11 +1,6 @@
 <?php ob_start();
     require('database.php');
-    // <!-- ===================Sortcut for query=========== --> 
-    function _fetchAll($table){
-    global $conn;
-    $query = "SELECT * FROM $table ORDER BY id DESC";
-    return mysqli_fetch_assoc(mysqli_query($conn,$query));
-    }
+    // <!-- ===================Sortcut for query=========== -->     
     //made by php_munna
     function _fetch($table,$condition){
     global $conn;
@@ -57,8 +52,6 @@
     }    
 
     //============Other code start here========//
-    // $query = _fetchAll("brand");
-    // $query = _fetch("SELECT * FROM brand");
 
     // $query = _getAll("brand");
     // $query = _get("brand","id=8");

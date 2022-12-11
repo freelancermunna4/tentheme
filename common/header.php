@@ -10,7 +10,8 @@ $id = 0;
 if(isset($_SESSION['user_id'])){
 $id = $_SESSION['user_id'];
 }
-$person = _fetch("person","id=$id");
+  $website = _fetch("website","id=1");
+  $person = _fetch("person","id=$id");
 
 
  $cr_url = $_SERVER['SCRIPT_NAME'];
@@ -32,8 +33,12 @@ $person = _fetch("person","id=$id");
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <meta name="author" content="<?php echo $website['title']?>">
+  <meta name="keywords" content="<?php echo $website['keywords']?>">
+  <meta name="description" content="<?php echo $website['description']?>">
+
   <!-- Favicon -->
-  <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="admin/upload/<?php echo $website['favicon_name']?>" type="image/x-icon" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +56,7 @@ $person = _fetch("person","id=$id");
   <link rel="stylesheet" href="assets/css/styles.css" />
   <link rel="stylesheet" href="assets/css/custom.css" />
 
-  <title>Theme | Templates</title>
+  <title><?php echo $website['title']?></title>
 </head>
 
 <body>
@@ -60,7 +65,11 @@ $person = _fetch("person","id=$id");
   <header class="relative" style="background-image: linear-gradient(to right, #CEF3F3, #cef3f3c2), url('https://www.bangladeshisoftware.com/wp-content/uploads/2019/06/header-bg-copyright.jpg'); background-repeat: no-repeat; background-size: cover;">
     <div class="container flex justify-between items-center h-20 mb-auto relative z-50">
       <a href="index.php" class="w-fit">
-        <img class="h-10" src="assets/images/logo.png" alt="" />
+        <?php if(!empty($website['file_name'])){?>
+        <img class="h-10" src="admin/upload/<?php echo $website['file_name']?>" />
+        <?php }else{?>
+        <h2 style="font-size: 25px;font-weight:bold;font-family:'Courier New', Courier, monospace"><?php echo $website['title']?></h2>
+        <?php }?>
       </a>
 
       <!-- Header UL -->

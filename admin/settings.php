@@ -2,7 +2,7 @@
 <?php include("common/setting-sidebar.php")?>
       
         <?php
-        $data = _fetchAll("website");
+        $data = _fetch("website","id=1");
 
         if(isset($_POST['submit'])){
             $title = $_POST['title'];
@@ -17,7 +17,6 @@
             $facebook = $_POST['facebook'];
             $youtube = $_POST['youtube'];
             $linkedin = $_POST['linkedin'];
-
             $update = _update("website","title='$title',logo='$logo',description='$description',keyword='$keyword',url='$url',phone='$phone',mail='$mail',address='$address',footer_text='$footer_text',facebook='$facebook',youtube='$youtube',linkedin='$linkedin'","id=1");
 
             if($update){
@@ -127,7 +126,7 @@
                 $file_name = $_FILES['file']['name'];
                 $file_tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($file_tmp,"upload/$file_name");
-                if(empty($_file_name)){
+                if(empty($file_name)){
                   $msg = "Please Select File";
                   header("location:settings.php?msg=$msg");
                 }else{
@@ -173,7 +172,7 @@
                 $file_name = $_FILES['file']['name'];
                 $file_tmp = $_FILES['file']['tmp_name'];
                 move_uploaded_file($file_tmp,"upload/$file_name");
-                if(empty($_file_name)){
+                if(empty($file_name)){
                   $msg = "Please Select File";
                   header("location:settings.php?msg=$msg");
                 }else{
