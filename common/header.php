@@ -1,16 +1,22 @@
 <?php include("admin/config/functions.php");
 
-    if(isset($_SESSION['user_id'])){
-      $id = $_SESSION['user_id'];
-    }elseif(isset($_COOKIE['user_id'])){
-    $id = $_COOKIE['user_id'];
-    }else{
-    $id = 0;
-    }
-    if(isset($_SESSION['user_id'])){
-    $id = $_SESSION['user_id'];
-    }
-    $person = _fetch("person","id=$id");
+if(isset($_SESSION['user_id'])){
+$id = $_SESSION['user_id'];
+}elseif(isset($_COOKIE['user_id'])){
+$id = $_COOKIE['user_id'];
+}else{
+$id = 0;
+}
+if(isset($_SESSION['user_id'])){
+$id = $_SESSION['user_id'];
+}
+$person = _fetch("person","id=$id");
+
+
+ $cr_url = $_SERVER['SCRIPT_NAME'];
+ $cr_url = substr($cr_url,strrpos($cr_url,'/')+1);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -24,10 +24,10 @@
               <ul>
                 <li id="filter">Filter
                   <ul id="filter_list">
-                    <li><a href="index.php?sort=best-rated">Best rated</a></li>
-                    <li><a href="index.php?sort=Newest">Newest</a></li>
-                    <li><a href="index.php?sort=Price Low">Price Low</a></li>
-                    <li><a href="index.php?sort=Price High">Price High</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?sort=best-rated">Best rated</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?sort=Newest">Newest</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?sort=Price Low">Price Low</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?sort=Price High">Price High</a></li>
                 </ul>
                 </li>
               </ul>            
