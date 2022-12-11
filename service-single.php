@@ -403,46 +403,19 @@ $data = _fetch("service","id=$id");
               <h3 class="bg-green-600 text-white p-3 rounded-t">Recommended Products</h3>
               <div class="bg-[#f3f3f3]">
 
-                <a href="item.php" class="block px-4 py-6 pb-0 hover:bg-green-100">
+              <?php 
+              $category = $data['category'];
+              $similars = _get("products","category='$category' LIMIT 10");
+              while($similar = mysqli_fetch_assoc($similars)){
+              ?>
+                <a href="service-single.php?id=<?php echo $similar['id']?>" class="block px-4 py-6 pb-0 hover:bg-green-100">
                   <div class="flex items-start gap-x-4">
-                    <h2 class="text-base font-semibold text-gray-700 text-left w-7/12">Lorem ipsum dolor amet
-                      consectetur. dolor amet</h2>
-                    <img class="w-5/12"
-                      src="https://themeforest.img.customer.envatousercontent.com/files/398879361/Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=3b0e5cf150cad45010303b0172d5083b"
-                      alt="">
+                    <h2 class="text-base font-semibold text-gray-700 text-left w-7/12"><?php echo $similar['title']?></h2>
+                    <img class="w-5/12" src="admin/upload/<?php echo $similar['file_name1']?>">
                   </div>
-                  <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p>
+                  <!-- <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p> -->
                 </a>
-                <a href="item.php" class="block px-4 py-6 pb-0 hover:bg-green-100">
-                  <div class="flex items-start gap-x-4">
-                    <h2 class="text-base font-semibold text-gray-700 text-left w-7/12">Lorem ipsum dolor amet
-                      consectetur. dolor amet</h2>
-                    <img class="w-5/12"
-                      src="https://themeforest.img.customer.envatousercontent.com/files/398879361/Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=3b0e5cf150cad45010303b0172d5083b"
-                      alt="">
-                  </div>
-                  <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p>
-                </a>
-                <a href="item.php" class="block px-4 py-6 pb-0 hover:bg-green-100">
-                  <div class="flex items-start gap-x-4">
-                    <h2 class="text-base font-semibold text-gray-700 text-left w-7/12">Lorem ipsum dolor amet
-                      consectetur. dolor amet</h2>
-                    <img class="w-5/12"
-                      src="https://themeforest.img.customer.envatousercontent.com/files/398879361/Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=3b0e5cf150cad45010303b0172d5083b"
-                      alt="">
-                  </div>
-                  <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p>
-                </a>
-                <a href="item.php" class="block px-4 py-6 pb-0 hover:bg-green-100">
-                  <div class="flex items-start gap-x-4">
-                    <h2 class="text-base font-semibold text-gray-700 text-left w-7/12">Lorem ipsum dolor amet
-                      consectetur. dolor amet</h2>
-                    <img class="w-5/12"
-                      src="https://themeforest.img.customer.envatousercontent.com/files/398879361/Preview.jpg?auto=compress%2Cformat&fit=crop&crop=top&w=590&h=300&s=3b0e5cf150cad45010303b0172d5083b"
-                      alt="">
-                  </div>
-                  <p class="text-gray-500 py-5 border-b">Lorem ipsum dolor sit amet consectetur.</p>
-                </a>
+                <?php }?>
 
               </div>
             </div>

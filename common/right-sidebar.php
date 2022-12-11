@@ -26,9 +26,7 @@
             </button>
             <div class="ds_div" data-ref="Category">
               <div class="py-0">
-              <?php 
-              $products = mysqli_num_rows(_get("products","status='Publish'"));
-              ?>
+              <?php $products = mysqli_num_rows(_get("products","status='Publish'"));?>
                 <div class="flex justify-between items-center p-2 hover:bg-cyan-800 hover:text-white rounded">
                   <h6 class="text-sm font-medium">All Categories</h6>
                   <small><?php echo $products; ?></small>
@@ -40,7 +38,7 @@
                   while($ctg = mysqli_fetch_assoc($all_ctg)){
                     $ctg_name = $ctg['category'];
                   ?>
-                  <a href="<?php echo $cr_url; ?>?category=<?php echo $ctg['category']?>">
+                  <a href="<?php echo $cr_url;?>?category=<?php echo $ctg['category']?>">
                     <li
                       class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
                       <span><?php echo $ctg['category']?></span>
