@@ -1,6 +1,7 @@
 <!-- Header area -->
 <?php include("common/header.php");?>
 <!-- Header area -->
+<?php $pages = _fetch("pages","pg_name='contact-us'");?>
 
     <!-- Sub Header -->
     <div class="container space-y-6 pt-6 pb-12 lg:py-24">
@@ -48,13 +49,12 @@
                  lg:text-[36px]
                  xl:text-[40px]
                  ">
-              GET IN TOUCH WITH US
+                 <?php echo $pages['title']?>
             </h2>
-            <p class="text-base text-body-color leading-relaxed mb-9">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eius tempor incididunt ut labore et dolore magna aliqua. Ut enim
-              adiqua minim veniam quis nostrud exercitation ullamco
-            </p>
+            <?php echo $pages['content']?>
+            <br>
+            <br>
+            <br>
             <div class="flex mb-8 max-w-[370px] w-full">
               <div class="
                     max-w-[60px]
@@ -82,7 +82,7 @@
               </div>
               <div class="w-full">
                 <h4 class="font-bold text-dark text-xl mb-1">Phone Number</h4>
-                <p class="text-base text-body-color">(+62)81 414 257 9980</p>
+                <p class="text-base text-body-color"><?php echo $website['phone']?></p>
               </div>
             </div>
             <div class="flex mb-8 max-w-[370px] w-full">
@@ -110,7 +110,7 @@
                 <h4 class="font-bold text-dark text-xl mb-1">
                   Email Address
                 </h4>
-                <p class="text-base text-body-color">info@yourdomain.com</p>
+                <p class="text-base text-body-color"><?php echo $website['mail']?></p>
               </div>
             </div>
           </div>

@@ -19,7 +19,7 @@
             $msg = "Successfully Update";
             header("location:payment-gateway.php?msg=$msg");
           }else{
-            echo $err = "Something is Wrong!";
+             $err = "Something is Wrong!";
           }
         }
         ?>

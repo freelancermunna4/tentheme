@@ -24,6 +24,11 @@
               <span class="text-gray-700"><i class="fa-solid fa-building-columns"></i></span>
               <span>Deposit Bank</span>
             </a>
+            <a href="./pages.php"
+              class="p-4 gap-x-3 flex items-center border-b border-gray-200 hover:bg-white cursor-pointer text-base font-medium text-cyan-800">
+              <span class="text-gray-700"><i class="fa-solid fa-building-columns"></i></span>
+              <span>All Pages</span>
+            </a>
             <a href="./mailing-setting.php"
               class="p-4 gap-x-3 flex items-center border-b border-gray-200 hover:bg-white cursor-pointer font-medium text-cyan-800">
               <span class="text-orange-600"><i class="fa-brands fa-mailchimp"></i></span>
