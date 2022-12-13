@@ -7,7 +7,7 @@
               <i class="fa-solid fa-search"></i>
             </div>
             <input name="src" class="shadow w-full h-12 rounded-t px-10 focus:ring-2 focus:outline-none focus:ring-gray-200"
-              type="text" id="voice-search" placeholder="Search..." required />
+              type="text" id="voice-search" placeholder="Search..." required value="<?php if(isset($_GET['src'])){echo $_GET['src'];}?>"/>
             <button type="submit"
               class="flex absolute inset-y-0 right-1.5 text-sm items-center text-green-700 px-2 h-fit py-2 my-auto rounded">
               Search
@@ -71,12 +71,12 @@
               <div class="py-4 flex flex-wrap gap-2 items-center w-full">
 
                 <div class="relative">
-                  <input name="from" type="number" class="px-5 w-28 py-2 border rounded focus:border-gray-400" placeholder="5">
+                  <input name="from" type="number" class="px-5 w-28 py-2 border rounded focus:border-gray-400" placeholder="5" value="<?php if(isset($_GET['from'])){echo $_GET['from'];}?>">
                   <span class="text-sm absolute inset-y-0 my-auto flex items-center left-2.5">$</span>
                 </div>
                 <span>to</span>
                 <div class="relative">
-                  <input name="to" type="number" class="px-5 w-28 py-2  border rounded focus:border-gray-400" placeholder="51">
+                  <input name="to" type="number" class="px-5 w-28 py-2  border rounded focus:border-gray-400" placeholder="51" value="<?php if(isset($_GET['to'])){echo $_GET['to'];}?>">
                   <span class="text-sm absolute inset-y-0 my-auto flex items-center left-2.5">$</span>
                 </div>
                 <button type="submit"  class="py-2 px-4 rounded bg-gray-300 focus:ring-2 text-black"> <i

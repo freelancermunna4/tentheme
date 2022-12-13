@@ -20,23 +20,38 @@
             </div>
 
             <!-- Sorting Buttons -->
+            <div style="display:flex; gap:20px;">
             <div class="flex items-center  gap-x-4 sort">
               <ul>
-                <li id="filter">Filter
+                <li id="filter">Show
                   <ul id="filter_list">
-                    <li><a href="<?php echo $cr_url; ?>?sort=best-rated">Best rated</a></li>
-                    <li><a href="<?php echo $cr_url; ?>?sort=Newest">Newest</a></li>
-                    <li><a href="<?php echo $cr_url; ?>?sort=Price Low">Price Low</a></li>
-                    <li><a href="<?php echo $cr_url; ?>?sort=Price High">Price High</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?items=20">20</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?items=40">50</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?items=100">100</a></li>
                 </ul>
                 </li>
               </ul>            
           </div>
+            <div class="flex items-center  gap-x-4 sort">
+              <ul>
+                <li id="filter2">Default
+                  <ul id="filter_list2">
+                    <li><a href="<?php echo $cr_url; ?>?sort=ASC">Price(Low > Heigh)</a></li>
+                    <li><a href="<?php echo $cr_url; ?>?sort=DESC">Price(Heigh > Low)</a></li>
+                </ul>
+                </li>
+              </ul>            
+          </div>
+        </div>
           </div>
 
         <script>
           $("#filter_list").hide();
           $("#filter").click(function(){
             $("#filter_list").toggle();
+          });
+          $("#filter_list2").hide();
+          $("#filter2").click(function(){
+            $("#filter_list2").toggle();
           });
         </script>

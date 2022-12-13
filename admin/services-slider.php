@@ -47,8 +47,7 @@
                     </tr>
                   </thead>
                   <tbody class="bg-white divide-y divide-gray-200">
-                    <?php 
-                    
+                    <?php                     
                     
                     $pagination = "ON";
                     if (isset($_GET['page_no']) && $_GET['page_no']!="") {
@@ -60,8 +59,8 @@
                     $adjacents = "2"; 
 
                     $slider =_query("SELECT * FROM slider WHERE pg_name='services' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("slider","pg_name='services'")); 
-
+                    
+                    $total_records = mysqli_num_rows(_get("slider","pg_name='services'"));
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
                     $i=0;
