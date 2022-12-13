@@ -11,7 +11,7 @@
                     </div>
                     <div>
                         <div style="text-align: right;margin: 5px;padding-top: 10px;">
-                            <a href="add-slider.php" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new slider</a>
+                            <!-- <a href="add-slider.php" style="padding: 9px 15px;margin-right: 12px;background: #0e33f78a;color:#fff;box-sizing: border-box;border-radius: 2px;">Add new slider</a> -->
                         </div>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['btn2']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
                           <a href="edit-slider.php?src=home-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Edit</a>
-                          <a href="delete.php?src=home-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a>
+                          <!-- <a href="delete.php?src=home-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a> -->
                         </td>
                       </tr>
                       <?php }?>

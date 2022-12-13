@@ -192,12 +192,12 @@
             class="text-xs opacity-50 transition-all"><i class="fa-solid fa-chevron-up"></i></span>
         </button>
         <ul class="ds_ul transition-all" data-ref="slider">
-          <li>
+          <!-- <li>
             <a href="./add-slider.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
               <span>Add Slider</span>
             </a>
-          </li>
+          </li> -->
           <li>
             <a href="./home-slider.php">
               <h4> <i class="fa-solid fa-briefcase"></i> </h4>
