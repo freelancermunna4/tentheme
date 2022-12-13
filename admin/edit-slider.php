@@ -53,10 +53,10 @@ if(isset($_POST['submit'])){
             <select name="pg_name" class="input">
               <?php if($data['pg_name']=='index'){?>
               <option selected value="index">Home Page</option>
-              <option value="service">Service Page</option>
+              <option value="services">Services Page</option>
               <?php }else{?>
               <option value="index">Home Page</option>
-              <option selected value="service">Service Page</option>
+              <option selected value="services">Services Page</option>
               <?php }?>
             </select>
           </div>

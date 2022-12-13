@@ -174,119 +174,119 @@ if (all_item_content[0] && all_item_content_toggler[0]) {
 
 // Slider
 
-// const header_slider_slides = document.getElementById("header_slider_slides");
-// const all_header_slides_toggle = document.querySelectorAll(
-//   ".header_slides_toggle"
-// );
+const header_slider_slides = document.getElementById("header_slider_slides");
+const all_header_slides_toggle = document.querySelectorAll(
+  ".header_slides_toggle"
+);
 
-// const all_header_slides_image = document.querySelectorAll(
-//   ".header_slides_image"
-// );
+const all_header_slides_image = document.querySelectorAll(
+  ".header_slides_image"
+);
 
-// const all_header_slides_text = document.querySelectorAll(".header_slides_text");
+const all_header_slides_text = document.querySelectorAll(".header_slides_text");
 
-// if (
-//   header_slider_slides &&
-//   all_header_slides_toggle &&
-//   all_header_slides_text
-// ) {
-//   all_header_slides_toggle.forEach((btn) => {
-//     btn.addEventListener("click", function () {
-//       const target = this.dataset.target;
+if (
+  header_slider_slides &&
+  all_header_slides_toggle &&
+  all_header_slides_text
+) {
+  all_header_slides_toggle.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const target = this.dataset.target;
 
-//       all_header_slides_text.forEach((text) => {
-//         const text_target = text.dataset.target;
+      all_header_slides_text.forEach((text) => {
+        const text_target = text.dataset.target;
 
-//         if (text_target === target) {
-//           text.style.zIndex = "40";
-//           text.style.opacity = "1";
-//           text.children[0].children[0].style.transform = "translateY(0%)";
-//           text.children[0].children[1].style.transform = "translateY(0%)";
-//         } else {
-//           text.style.zIndex = "30";
-//           text.style.opacity = "0";
-//           text.children[0].children[0].style.transform = "translateY(-50%)";
-//           text.children[0].children[1].style.transform = "translateY(50%)";
-//         }
-//       });
+        if (text_target === target) {
+          text.style.zIndex = "40";
+          text.style.opacity = "1";
+          text.children[0].children[0].style.transform = "translateY(0%)";
+          text.children[0].children[1].style.transform = "translateY(0%)";
+        } else {
+          text.style.zIndex = "30";
+          text.style.opacity = "0";
+          text.children[0].children[0].style.transform = "translateY(-50%)";
+          text.children[0].children[1].style.transform = "translateY(50%)";
+        }
+      });
 
-//       all_header_slides_image.forEach((img) => {
-//         const img_target = img.dataset.target;
-//         if (target === img_target) {
-//           img.style.zIndex = "10";
-//           img.style.transform = "translateX(0%)";
-//           img.style.opacity = "1";
-//         } else {
-//           img.style.zIndex = "5";
-//           img.style.opacity = "0";
-//           setTimeout(() => {
-//             img.style.transform = "translateX(100%)";
-//           }, 500);
-//         }
-//       });
+      all_header_slides_image.forEach((img) => {
+        const img_target = img.dataset.target;
+        if (target === img_target) {
+          img.style.zIndex = "10";
+          img.style.transform = "translateX(0%)";
+          img.style.opacity = "1";
+        } else {
+          img.style.zIndex = "5";
+          img.style.opacity = "0";
+          setTimeout(() => {
+            img.style.transform = "translateX(100%)";
+          }, 500);
+        }
+      });
 
-//       all_header_slides_toggle.forEach((btn) =>
-//         btn.setAttribute("disabled", "true")
-//       );
+      all_header_slides_toggle.forEach((btn) =>
+        btn.setAttribute("disabled", "true")
+      );
 
-//       setTimeout(() => {
-//         all_header_slides_toggle.forEach((btn) =>
-//           btn.removeAttribute("disabled")
-//         );
-//       }, 500);
-//     });
-//   });
-// }
+      setTimeout(() => {
+        all_header_slides_toggle.forEach((btn) =>
+          btn.removeAttribute("disabled")
+        );
+      }, 500);
+    });
+  });
+}
 
-// const all_header_sub_parent = document.querySelectorAll(".header_sub_parent");
-// const all_header_sub_ul_toggle = document.querySelectorAll(
-//   ".header_sub_ul_toggle"
-// );
+const all_header_sub_parent = document.querySelectorAll(".header_sub_parent");
+const all_header_sub_ul_toggle = document.querySelectorAll(
+  ".header_sub_ul_toggle"
+);
 
-// if (all_header_sub_parent && all_header_sub_ul_toggle) {
-//   for (let i = 0; i < all_header_sub_ul_toggle.length; i++) {
-//     all_header_sub_ul_toggle[i].addEventListener("mouseenter", function () {
-//       this.nextElementSibling.classList.remove("scale-y-0");
-//       this.nextElementSibling.classList.add("scale-y-100");
-//       this.classList.add("bg-white");
-//     });
+if (all_header_sub_parent && all_header_sub_ul_toggle) {
+  for (let i = 0; i < all_header_sub_ul_toggle.length; i++) {
+    all_header_sub_ul_toggle[i].addEventListener("mouseenter", function () {
+      this.nextElementSibling.classList.remove("scale-y-0");
+      this.nextElementSibling.classList.add("scale-y-100");
+      this.classList.add("bg-white");
+    });
 
-//     all_header_sub_parent[i].addEventListener("mouseleave", function () {
-//       this.children[0].classList.remove("bg-white");
-//       this.children[1].classList.remove("scale-y-100");
-//       this.children[1].classList.add("scale-y-0");
-//     });
-//   }
-// }
+    all_header_sub_parent[i].addEventListener("mouseleave", function () {
+      this.children[0].classList.remove("bg-white");
+      this.children[1].classList.remove("scale-y-100");
+      this.children[1].classList.add("scale-y-0");
+    });
+  }
+}
 
-// const reseller_btn = document.getElementById("reseller_btn");
-// if (reseller_btn) {
-//   reseller_btn.addEventListener("click", function () {
-//     this.innerText = "Processing...";
-//   });
-// }
+const reseller_btn = document.getElementById("reseller_btn");
+if (reseller_btn) {
+  reseller_btn.addEventListener("click", function () {
+    this.innerText = "Processing...";
+  });
+}
 
-// const copy_affiliate_link_btn = document.getElementById(
-//   "copy_affiliate_link_btn"
-// );
+const copy_affiliate_link_btn = document.getElementById(
+  "copy_affiliate_link_btn"
+);
 
-// if (copy_affiliate_link_btn) {
-//   copy_affiliate_link_btn.addEventListener("click", function () {
-//     var copyText = document.getElementById("affiliate_link_input");
+if (copy_affiliate_link_btn) {
+  copy_affiliate_link_btn.addEventListener("click", function () {
+    var copyText = document.getElementById("affiliate_link_input");
 
-//     copyText.select();
+    copyText.select();
 
-//     copyText.setSelectionRange(0, 99999);
+    copyText.setSelectionRange(0, 99999);
 
-//     navigator.clipboard.writeText(copyText.value);
+    navigator.clipboard.writeText(copyText.value);
 
-//     this.innerHTML = "Copied";
+    this.innerHTML = "Copied";
 
-//     setTimeout(() => {
-//       this.innerHTML = `<i class="fa-solid fa-copy"></i>`;
-//     }, 1000);
-//   });
-// }
+    setTimeout(() => {
+      this.innerHTML = `<i class="fa-solid fa-copy"></i>`;
+    }, 1000);
+  });
+}
 
 // Cart Functionality
 const cart_added_popup = document.querySelector(".cart_added_popup");

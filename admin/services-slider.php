@@ -26,7 +26,7 @@
                         $delete = _delete("slider","id=$check_list[$i]");
                       }
                       $msg = "Delete Successfully";
-                      header("location:home-slider.php?msg=$msg");
+                      header("location:services-slider.php?msg=$msg");
                     }
                   }
                   ?>
@@ -59,8 +59,8 @@
                     $next_page = $page_no + 1;
                     $adjacents = "2"; 
 
-                    $slider =_query("SELECT * FROM slider WHERE pg_name='service' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
-                    $total_records = mysqli_num_rows(_get("slider","pg_name='service'")); 
+                    $slider =_query("SELECT * FROM slider WHERE pg_name='services' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+                    $total_records = mysqli_num_rows(_get("slider","pg_name='services'")); 
 
                     $total_no_of_pages = ceil($total_records / $total_records_per_page);
                     $second_last = $total_no_of_pages - 1;
@@ -78,7 +78,7 @@
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['btn1']?></td>
                         <td class="p-4 text-sm font-normal text-gray-500 whitespace-nowrap lg:p-5"><?php echo $data['btn2']?></td>
                         <td class="text-center p-4 space-x-2 whitespace-nowrap lg:p-5">
-                          <a href="edit-slider.php?src=service-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Edit</a>
+                          <a href="edit-slider.php?src=services-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Edit</a>
                           <!-- <a href="delete.php?src=service-slider&&table=slider&&id=<?php echo $data['id']?>" class="popup_show btn bg-red-500 w-fit text-white">Delete</a> -->
                         </td>
                       </tr>
