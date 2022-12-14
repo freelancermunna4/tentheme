@@ -22,7 +22,53 @@
 
 
         <?php 
-          $service = _get("service","status='Publish' ORDER BY id DESC");          
+          if(isset($_GET['src'])){
+            $src = $_GET['src'];
+            $service = _query("SELECT service.*,person.* FROM service INNER JOIN person ON service.pid=person.id WHERE service.status='Publish' AND (person.name='$src' OR service.title LIKE '%$src%' OR category='$src' OR sell_price='$src')");
+          }elseif(isset($_GET['items'])){
+            $items = $_GET['items'];
+            $service = _get("service","status='Publish' LIMIT $items;");
+          }elseif(isset($_GET['sort'])){ 
+            $sort = $_GET['sort'];
+            $service = _get("service","status='Publish' ORDER BY sell_price $sort");
+          }elseif(isset($_GET['category'])){ 
+            $category = $_GET['category'];
+            $service = _get("service","status='Publish' AND category='$category'");
+          }elseif(isset($_GET['from'])){ 
+            $from = $_GET['from'];
+            $to = $_GET['to'];
+            $service = _get("service","status='Publish' AND sell_price BETWEEN $from AND $to");
+          }elseif(isset($_GET['date'])){ 
+            $date = $_GET['date'];
+            $year = $time-31536000;
+            $month = $time-2592000;
+            $week = $time-604800;
+              if($date=='last-year'){
+              $checked = 'checked';
+              $service = _get("service","status='Publish' AND time < $year");
+              }elseif($date=='last-month'){
+                $service = _get("service","status='Publish' AND time < $month");
+              }elseif($date=='last-week'){
+                $service = _get("service","status='Publish' AND time < $week");
+              }else{
+                header("location:index.php");
+              }
+          }else{
+          $pagination = "ON";
+          if (isset($_GET['page_no']) && $_GET['page_no']!="") {
+          $page_no = $_GET['page_no'];} else {$page_no = 1;}
+          $total_records_per_page = 10;
+          $offset = ($page_no-1) * $total_records_per_page;
+          $previous_page = $page_no - 1;
+          $next_page = $page_no + 1;
+          $adjacents = "2";   
+                 
+          $service = _get("service","status='Publish' ORDER BY id DESC LIMIT $offset, $total_records_per_page");
+          
+          $total_records = mysqli_num_rows(_get("service","status='Publish'"));
+          $total_no_of_pages = ceil($total_records / $total_records_per_page);
+          $second_last = $total_no_of_pages - 1;
+          }         
           while($data = mysqli_fetch_assoc($service)){
             $autor_id = $data['pid'];
             $autor = _fetch("person","id=$autor_id");
@@ -68,7 +114,7 @@
           </div>
           <?php }?>
 
-          <div class="w-full mt-12 flex justify-center">
+          <!-- <div class="w-full mt-12 flex justify-center">
             <div class="flex items-center space-x-1 w-fit">
               <a href="#" class="px-4 py-2 text-gray-500 bg-gray-300 hover:bg-cyan-800 hover:text-white rounded-l">
                 <i class="fa-solid fa-arrow-left"></i>
@@ -99,7 +145,93 @@
                 <i class="fa-solid fa-arrow-right"></i>
               </a>
             </div>
-          </div>
+          </div> -->
+
+
+          <?php if(isset($pagination)){?>
+                <style>
+                .paginations{width:900px;}
+                .paginations>ul>li{list-style: none;display: inline-block;line-height: 2.5;}
+                .paginations>ul>li>a{padding: 5px 10px;margin:5px;background: #fff;font-weight: bolder;box-shadow: 0px 0px 2px gray;}
+                .paginations>ul>li>a:hover{background: #4ade80;color: #fff;}
+                .active>a{background: #4ade80 !important;color: #fff !important;}
+                .page_of{padding-top: 10px;}
+                @media only screen and (max-width: 850px){.page_of{display: none;}}
+              </style>
+                  <div class="paginations">
+                    <ul>
+                      <?php // if($page_no > 1){ echo "<li><a href='?page_no=1'>First Page</a></li>"; } ?>
+                        
+                      <li <?php if($page_no <= 1){ echo "class=''"; } ?>>
+                      <a <?php if($page_no > 1){ echo "href='?page_no=$previous_page'"; } ?>>Previous</a>
+                      </li>
+                          
+                        <?php 
+                      if ($total_no_of_pages <= 10){  	 
+                        for ($counter = 1; $counter <= $total_no_of_pages; $counter++){
+                          if ($counter == $page_no) {
+                          echo "<li class=''><a>$counter</a></li>";	
+                            }else{
+                              echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                            }
+                            }
+                      }
+                      elseif($total_no_of_pages > 10){
+                        
+                      if($page_no <= 4) {			
+                      for ($counter = 1; $counter < 8; $counter++){		 
+                          if ($counter == $page_no) {
+                          echo "<li class='active'><a>$counter</a></li>";	
+                            }else{
+                              echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                            }
+                            }
+                        echo "<li><a>...</a></li>";
+                        echo "<li><a href='?page_no=$second_last'>$second_last</a></li>";
+                        echo "<li><a href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";
+                        }
+
+                      elseif($page_no > 4 && $page_no < $total_no_of_pages - 4) {		 
+                        echo "<li><a href='?page_no=1'>1</a></li>";
+                        echo "<li><a href='?page_no=2'>2</a></li>";
+                            echo "<li><a>...</a></li>";
+                            for ($counter = $page_no - $adjacents; $counter <= $page_no + $adjacents; $counter++) {			
+                              if ($counter == $page_no) {
+                          echo "<li class='active'><a>$counter</a></li>";	
+                            }else{
+                              echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                            }                  
+                          }
+                          echo "<li><a>...</a></li>";
+                        echo "<li><a href='?page_no=$second_last'>$second_last</a></li>";
+                        echo "<li><a href='?page_no=$total_no_of_pages'>$total_no_of_pages</a></li>";      
+                                }
+                        
+                        else {
+                            echo "<li><a href='?page_no=1'>1</a></li>";
+                        echo "<li><a href='?page_no=2'>2</a></li>";
+                            echo "<li><a>...</a></li>";
+
+                            for ($counter = $total_no_of_pages - 6; $counter <= $total_no_of_pages; $counter++) {
+                              if ($counter == $page_no) {
+                          echo "<li class='active'><a>$counter</a></li>";	
+                            }else{
+                              echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                            }                   
+                                    }
+                                }
+                      }
+                    ?>
+                        
+                      <li <?php if($page_no >= $total_no_of_pages){ echo "class='disabled'"; } ?>>
+                      <a <?php if($page_no < $total_no_of_pages) { echo "href='?page_no=$next_page'"; } ?>>Next</a>
+                      </li>
+                        <?php if($page_no < $total_no_of_pages){
+                        echo "<li><a href='?page_no=$total_no_of_pages'>Last</a></li>";
+                        } ?>
+                    </ul>
+                  </div>
+                <?php }?>
 
         </div>
 

@@ -1,5 +1,15 @@
-      <div class="sticky -top-52 w-full lg:min-w-[350px] lg:w-[350px]">
+<?php 
+ $cr_index = trim($cr_url,".php");
+ if($cr_index=='services'){
+    $index = 'service';
+    $index2 = 'service';
+    }else{
+      $index = 'products';
+      $index2 = 'products';
+    }
 
+?>
+      <div class="sticky -top-52 w-full lg:min-w-[350px] lg:w-[350px]">
       <form action="<?php echo $cr_url; ?>" method="GET">
           <label for="voice-search" class="sr-only">Search</label>
           <div class="relative w-full">
@@ -7,7 +17,7 @@
               <i class="fa-solid fa-search"></i>
             </div>
             <input name="src" class="shadow w-full h-12 rounded-t px-10 focus:ring-2 focus:outline-none focus:ring-gray-200"
-              type="text" id="voice-search" placeholder="Search..." required value="<?php if(isset($_GET['src'])){echo $_GET['src'];}?>"/>
+              type="text" id="voice-search" placeholder="Search..." required value="<?php if(isset($_GET['src'])){echo $_GET['src'];}elseif(isset($_GET['category'])){echo $_GET['category'];}?>"/>
             <button type="submit"
               class="flex absolute inset-y-0 right-1.5 text-sm items-center text-green-700 px-2 h-fit py-2 my-auto rounded">
               Search
@@ -16,8 +26,7 @@
         </form>
 
           <!-- Filter by Category -->
-          <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
-    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" class="sidebar_item overflow-hidden bg-white shadow px-5">
+          <div style="box-shadow:rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,rgba(0, 0, 0, 0.06) 0px 0px 0px 1px" class="sidebar_item overflow-hidden bg-white shadow px-5">
             <button class="ds_title" data-ref="Category">
               <span>Category</span>
               <span>
@@ -26,10 +35,10 @@
             </button>
             <div class="ds_div" data-ref="Category">
               <div class="py-0">
-              <?php $products = mysqli_num_rows(_get("products","status='Publish'"));?>
+              <?php $index = mysqli_num_rows(_get("$index","status='Publish'"));?>
                 <div class="flex justify-between items-center p-2 hover:bg-cyan-800 hover:text-white rounded">
                   <h6 class="text-sm font-medium">All Categories</h6>
-                  <small><?php echo $products; ?></small>
+                  <small><?php echo $index; ?></small>
                 </div>
                 <ul class="pb-3">
 
@@ -43,10 +52,10 @@
                       class="w-full flex items-center justify-between text-sm p-2 hover:bg-cyan-800 hover:text-white rounded">
                       <span><?php echo $ctg['category']?></span>
                       <?php
-                      $all_products = _get("products","category='$ctg_name' AND status='Publish'");
-                      $products = mysqli_num_rows($all_products)
+                      $all_index = _get("$index2","category='$ctg_name' AND status='Publish'");
+                      $cr_index = mysqli_num_rows($all_index);
                       ?>
-                      <span><?php echo $products; ?></span>
+                      <span><?php echo $cr_index; ?></span>
                     </li>
                   </a>
                   <?php }?>

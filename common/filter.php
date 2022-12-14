@@ -23,8 +23,9 @@
             <div style="display:flex; gap:20px;">
             <div class="flex items-center  gap-x-4 sort">
               <ul>
-                <li id="filter">Show
-                  <ul id="filter_list">
+                <li id="filter"><?php if(isset($_GET['items'])){echo $_GET['items'];}else{echo "show";}?>
+                  <ul id="filter_list">                    
+                    <li><a href="<?php echo $cr_url; ?>?items=20">20</a></li>
                     <li><a href="<?php echo $cr_url; ?>?items=20">20</a></li>
                     <li><a href="<?php echo $cr_url; ?>?items=40">50</a></li>
                     <li><a href="<?php echo $cr_url; ?>?items=100">100</a></li>
@@ -34,7 +35,17 @@
           </div>
             <div class="flex items-center  gap-x-4 sort">
               <ul>
-                <li id="filter2">Default
+                <li id="filter2">
+                  <?php 
+                  if(isset($_GET['sort'])){
+                  $sort = $_GET['sort'];
+                  if($sort=='ASC'){
+                    echo "Low > Heigh";
+                  }elseif($sort=='DESC'){
+                    echo "Heigh > Low";
+                  }}else{
+                    echo "Default";
+                  }?>
                   <ul id="filter_list2">
                     <li><a href="<?php echo $cr_url; ?>?sort=ASC">Price(Low > Heigh)</a></li>
                     <li><a href="<?php echo $cr_url; ?>?sort=DESC">Price(Heigh > Low)</a></li>
@@ -48,10 +59,13 @@
         <script>
           $("#filter_list").hide();
           $("#filter").click(function(){
+          $("#filter_list2").hide();
             $("#filter_list").toggle();
           });
           $("#filter_list2").hide();
           $("#filter2").click(function(){
+          $("#filter_list").hide();
             $("#filter_list2").toggle();
           });
+
         </script>

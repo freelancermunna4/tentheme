@@ -19,8 +19,6 @@
           <div class="items list_view">
             
           <?php
-
-
           if(isset($_GET['src'])){
             $src = $_GET['src'];
             $products = _query("SELECT products.*,person.* FROM products INNER JOIN person ON products.pid=person.id WHERE products.status='Publish' AND (person.name='$src' OR products.title LIKE '%$src%' OR category='$src' OR sell_price='$src')");
@@ -163,11 +161,8 @@
 
 
             <?php if(isset($pagination)){?>
-                <!-- <div style="padding:20px 10px;"> -->
-                <!-- /* ----------paginations----------- */ -->
                 <style>
                 .paginations{width:900px;}
-                /* .paginations>ul{box-shadow: 0 0 1px gray;margin: 0;padding: 10px;} */
                 .paginations>ul>li{list-style: none;display: inline-block;line-height: 2.5;}
                 .paginations>ul>li>a{padding: 5px 10px;margin:5px;background: #fff;font-weight: bolder;box-shadow: 0px 0px 2px gray;}
                 .paginations>ul>li>a:hover{background: #4ade80;color: #fff;}
@@ -248,20 +243,7 @@
                         } ?>
                     </ul>
                   </div>
-                <!-- /* ----------paginations----------- */ -->
                 <?php }?>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
