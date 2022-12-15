@@ -24,7 +24,7 @@ if($id<1){
 
         <small class="text-xs"> <i class="fa-solid fa-chevron-right"></i></small>
 
-        <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)"
+        <a style="background-image: conic-gradient(from 1turn, #0e9479, #16a085)" 
           class="text-white px-4 py-1.5 rounded shadow-sm" href="dashboard.php"> dashboard
         </a>
 
