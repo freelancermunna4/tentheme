@@ -5,7 +5,10 @@
               <hr>
               <div class="balance">
                 <img src="admin/upload/<?php echo $person['file_name']?>">
-                <p><b><?php echo $person['balance']?> ৳</b></p>
+                <div>
+                  <p><b><?php echo $person['balance']?> ৳</b></p>
+                  <a href="deposit.php">Deposit Now</a>
+                </div>
               </div>
             </div>
             <button class="ds_title text-base font-normal w-full flex justify-between pb-1.5" data-ref="my-dashboard">
@@ -59,6 +62,16 @@
                   <span class="text-xs"><i class="fa-solid fa-ticket"></i>
                   </span>
                   <span>SUPPORT TICKETS</span>
+                </a>
+              </li>
+
+
+              <li>
+                <a href="deposits.php"
+                  class="text-sm flex items-center justify-start w-full gap-2 text-[#2a3744] hover:bg-[#2a3744] hover:text-white rounded-sm p-2 uppercase">
+                  <span class="text-xs"><i class="fa-solid fa-ticket"></i>
+                  </span>
+                  <span>Deposits</span>
                 </a>
               </li>
 

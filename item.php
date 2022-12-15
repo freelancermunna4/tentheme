@@ -217,8 +217,32 @@ $data = _fetch("products","id=$id");
                   vitae. Quasi, voluptates!</p>
               </div>
 
-            </div>
+<!-- ---------------reveiw----system----------------------- -->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ---------------reveiw----system----------------------- -->
+
+
+ 
+              
+            </div>
 
           </div>
 
@@ -232,11 +256,10 @@ $data = _fetch("products","id=$id");
 
             <!-- comments -->
             <div class="pt-6 space-y-3">
-
-
             <?php 
-            $products = _fetch("products","comment > 0");
-            if($products){
+            $products = _fetch("products","id=$id");
+            $products['comment'];              
+            if($products['comment'] > 0){
             ?>
               <div class="border rounded overflow-hidden">
                     <?php                    
@@ -298,15 +321,7 @@ $data = _fetch("products","id=$id");
                     printTree($arr);
                     ?>
               </div>
-
               <?php }?>
-
-
-
-
-
-
-
 
               <?php                 
                 if(isset($_POST['send_message'])){

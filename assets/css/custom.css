@@ -11,17 +11,25 @@
 }
 .balance{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 10px;
+}
+.balance>div{
+    margin-top: 12px;
+    margin-left: 40px;
 }
 .balance> img{
     width: 70px;
     height: 70px;
     border-radius: 90px;
 }
-.balance> p{
+.balance>div> p{
     font-size: 30px;
     margin:auto;
+}
+.balance>div> a{
+    color: #2563EB;
+    font-weight: bold;
 }
 
 .sort{
