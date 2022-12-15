@@ -53,10 +53,7 @@
                   </svg>
                   <input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="search...">
                 </div>
-                <div class="lg:ml-40 ml-10 space-x-8">
-                  <a href="deposit.php" class="btn_blue">
-                    New Ticket</a>
-                </div>
+                <div class="lg:ml-40 ml-10 space-x-8"><a href="deposit.php" class="btn_blue">Deposit Now</a></div>
               </div>
             </div>
             <div>
