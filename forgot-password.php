@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="assets/css/styles.css" />
 
   <title>Title</title>
-</head>
+</head> 
 
 <body>
   <!-- Header -->
