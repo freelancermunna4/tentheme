@@ -26,7 +26,7 @@
 
     </div> 
   </header>
-
+ 
   <main style="min-height: calc(100vh - 80px)">
     <div class="flex items-start py-6">
       <div class="container flex flex-col lg:flex-row gap-y-5 lg:gap-y-0 lg:gap-x-5">
