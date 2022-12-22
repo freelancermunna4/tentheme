@@ -28,7 +28,7 @@ if($id<1){
           class="text-white px-4 py-1.5 rounded shadow-sm" href="dashboard.php"> dashboard
         </a>
 
-      </div>
+      </div> 
 
     </div>
   </header>
